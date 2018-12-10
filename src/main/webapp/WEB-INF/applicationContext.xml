@@ -18,8 +18,8 @@
 	<!-- configura automaticamente a tela de login -->
 	<http auto-config="false" use-expressions="true">		
 		<intercept-url pattern="/Inicio.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/pacientes/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
-		<intercept-url pattern="/medicos/**" access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />		
+		<intercept-url pattern="/cadastros/entidades/paciente/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/entidades/medico/**" access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />		
 		<intercept-url pattern="/**" access="denyAll" />
 		
 		<form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true" 
