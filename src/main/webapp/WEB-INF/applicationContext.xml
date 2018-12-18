@@ -37,12 +37,12 @@
 		class="com.br.sixminds.psyconnect.security.JsfRedirectStrategy" />
 
 
-	<!-- liberando acesso para o resource -->
-	<http pattern="/Login.xhtml" security="none" />
+	<!-- liberando acesso sem passar pelo securiry -->	
+	<http pattern="/Login.xhtml" security="none" />	
 	<http pattern="/Erro.xhtml" security="none" />
 	<http pattern="/javax.faces.resource/**" security="none" />
 
-	<!-- configura automaticamente a tela de login -->
+	<!-- configura automaticamente a tela de login  / false-->
 	<http auto-config="false" use-expressions="true">
 
 		<!-- traduz a a excessão -->
@@ -51,10 +51,12 @@
 		<!-- define os acessos -->
 		<intercept-url pattern="/Inicio.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/cadastros/entidades/paciente/**"
-			access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
-		<intercept-url pattern="/cadastros/entidades/medico/**"
-			access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />
+		
+		<intercept-url pattern="/cadastros/entidades/paciente/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/entidades/medico/**"	access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />
+		
+		<intercept-url pattern="/cadastros/parametros/especialidadeMedica/**" access="hasAnyRole('ADMINISTRADORES')" />
+		
 		<intercept-url pattern="/**" access="denyAll" />
 
 		<form-login login-page="/Login.xhtml"
