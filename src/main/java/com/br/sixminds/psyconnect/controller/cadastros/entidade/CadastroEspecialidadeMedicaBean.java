@@ -42,9 +42,7 @@ public class CadastroEspecialidadeMedicaBean implements Serializable {
 		}
     }
 
-	/**
-	 * 
-	 */
+    
 	private void limpar() {
 		this.especialidadeMedica = new EspecialidadeMedica();
 		

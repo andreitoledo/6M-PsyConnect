@@ -56,6 +56,7 @@
 		<intercept-url pattern="/cadastros/entidades/medico/**"	access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />
 		
 		<intercept-url pattern="/cadastros/parametros/especialidadeMedica/**" access="hasAnyRole('ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/parametros/agenda/**" access="hasAnyRole('ADMINISTRADORES')" />
 		
 		<intercept-url pattern="/**" access="denyAll" />
 
