@@ -53,6 +53,7 @@
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		
 		<intercept-url pattern="/cadastros/entidades/paciente/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/entidades/medico/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
 		<intercept-url pattern="/cadastros/entidades/medico/**"	access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />
 		
 		<intercept-url pattern="/cadastros/parametros/especialidadeMedica/**" access="hasAnyRole('ADMINISTRADORES')" />

@@ -1,7 +1,7 @@
 /**
  * @author andrei
  *
- * 7 de dez de 2018
+ * 29 de dez de 2018
  */
 package com.br.sixminds.psyconnect.model;
 
@@ -12,10 +12,13 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.br.sixminds.psyconnect.model.enums.TipoLogradouro;
@@ -27,20 +30,30 @@ import com.br.sixminds.psyconnect.model.enums.TipoTelefone;
  */
 
 @Entity
-@Table(name = "paciente")
-@DiscriminatorValue("PACIENTE")
-public class Paciente extends Entidade {
+@Table(name = "medico")
+@DiscriminatorValue("MEDICO")
+public class Medico extends Entidade {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual; // rg
-	@CPF
+	@CPF	
 	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf
+	@NotEmpty
+	private String crm; // crm
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_especialidadeMedica")
+	private EspecialidadeMedica especialidadeMedica;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_agenda")
+	private Agenda agenda;
 
 	/* ENDERECO ESTABELECIMENTO */
 
@@ -93,7 +106,6 @@ public class Paciente extends Entidade {
 	private String contato3;
 	private String email3;
 
-
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -116,6 +128,30 @@ public class Paciente extends Entidade {
 
 	public void setInscricaoFederal(String inscricaoFederal) {
 		this.inscricaoFederal = inscricaoFederal;
+	}
+
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+
+	public EspecialidadeMedica getEspecialidadeMedica() {
+		return especialidadeMedica;
+	}
+
+	public void setEspecialidadeMedica(EspecialidadeMedica especialidadeMedica) {
+		this.especialidadeMedica = especialidadeMedica;
+	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 	public TipoLogradouro getTipoLogradouro() {

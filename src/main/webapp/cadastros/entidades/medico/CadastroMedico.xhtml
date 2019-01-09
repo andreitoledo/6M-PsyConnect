@@ -1,0 +1,333 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="titulo">#{cadastroMedicoBean.editando ? 'Edição de medico' : 'Novo medico'}</ui:define>
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<o:viewParam name="medico" value="#{cadastroMedicoBean.medico}" />
+			<f:viewAction action="#{cadastroMedicoBean.inicializar}"></f:viewAction>
+		</f:metadata>
+
+		<h2>#{cadastroMedicoBean.editando ? 'Edição de medico' : '|
+			Sistema PsyConnect | Novo medico'}</h2>
+
+		<h:form id="frmCadastro">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:panel>
+				<p:column>
+					<i><b> <p:outputLabel value="Código " for="codigo" /> <p:inputText
+								id="codigo" size="15" maxlength="15"
+								value="#{cadastroMedicoBean.medico.codigo}" readonly="true" />
+					</b></i>
+				</p:column>
+			</p:panel>
+
+
+			<!-- botão salvar -->
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroMedicoBean.salvar}" update="frmCadastro" />
+				</p:toolbarGroup>
+
+				<!-- botão pesquisar -->
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa"
+						outcome="/cadastros/entidades/medico/PesquisaMedicos" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<!-- 			deixa a tela responsivo  -->
+			<div class="ui-fluid">
+
+				<!-- começa a definir tela com os atributos -->
+				<p:panelGrid columns="3" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+					<p:column>
+						<p:outputLabel value="Nome" for="nome" />
+						<br />
+						<p:inputText id="nome" size="60" maxlength="80"
+							value="#{cadastroMedicoBean.medico.nome}" />
+					</p:column>
+
+					<p:column>
+						<h:outputText value="CPF" />
+						<br />
+						<p:inputMask mask="999.999.999-99" required="true"
+							requiredMessage="O CPF é obrigatório" size="14" maxlength="14"
+							value="#{cadastroMedicoBean.medico.inscricaoFederal}" />
+					</p:column>
+
+					<p:column>
+						<p:outputLabel value="RG" for="inscricaoEstadual" />
+						<br />
+						<p:inputText id="inscricaoEstadual" size="20" maxlength="20"
+							value="#{cadastroMedicoBean.medico.inscricaoEstadual}" />
+					</p:column>
+
+					<p:column>
+						<p:outputLabel value="Data Nascimento" for="dataNascimento" />
+						<br />
+						<p:calendar id="dataNascimento" size="10"
+							value="#{cadastroMedicoBean.medico.dataNascimento}"
+							pattern="dd/MM/yyyy" />
+					</p:column>
+					
+					<p:column>
+						<p:outputLabel value="CRM" for="crm" />
+						<br />
+						<p:inputText id="crm" size="20" maxlength="20"
+							value="#{cadastroMedicoBean.medico.crm}" />
+					</p:column>
+					
+					<p:column>
+					<p:outputLabel value="Especialidade" for="especialidadeMedica" />
+					<br />
+					<p:selectOneMenu id="especialidadeMedica"
+						value="#{cadastroMedicoBean.medico.especialidadeMedica}">
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItems
+							value="#{cadastroMedicoBean.especialidadeMedicas}"
+							var="especialidadeMedicas" itemLabel="#{especialidadeMedicas.nome}"
+							itemValue="#{especialidadeMedicas}" />
+					</p:selectOneMenu>
+				</p:column>
+				
+				<p:column>
+					<p:outputLabel value="Agenda" for="agenda" />
+					<br />
+					<p:selectOneMenu id="agenda"
+						value="#{cadastroMedicoBean.medico.agenda}">
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItems
+							value="#{cadastroMedicoBean.agendas}"
+							var="agendas" itemLabel="#{agendas.nome}"
+							itemValue="#{agendas}" />
+					</p:selectOneMenu>
+				</p:column>
+
+				</p:panelGrid>
+
+				<!-- endereço estabelecimento -->
+				<p:tabView>
+					<p:tab title="ENDEREÇO">
+						<h:panelGrid id="gridEndereco" columns="3"
+							style="width: 100%; margin-top: 0px" columnClasses="campo">
+
+							<h:column>
+								<p:outputLabel value="Tipo Logradouro" for="tipoLogradouro" />
+								<br />
+								<p:selectOneMenu id="tipoLogradouro"
+									value="#{cadastroMedicoBean.medico.tipoLogradouro}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItems value="#{cadastroMedicoBean.tipoLogradouros}"
+										var="tipoLogradouro" itemLabel="#{tipoLogradouro.descricao}"
+										itemValue="#{tipoLogradouro}" />
+								</p:selectOneMenu>
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Logradouro" for="logradouro" />
+								<br />
+								<p:inputText id="logradouro" size="60" maxlength="60"
+									value="#{cadastroMedicoBean.medico.logradouro}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Numero" for="numero" />
+								<br />
+								<p:inputText id="numero" size="10" maxlength="10"
+									value="#{cadastroMedicoBean.medico.numero}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Complemento" for="complemento" />
+								<br />
+								<p:inputText id="complemento" size="60" maxlength="60"
+									value="#{cadastroMedicoBean.medico.complemento}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Bairro" for="bairro" />
+								<br />
+								<p:inputText id="bairro" size="40" maxlength="40"
+									value="#{cadastroMedicoBean.medico.bairro}" />
+							</h:column>
+
+							<h:column>
+								<h:outputText value="CEP" />
+								<br />
+								<p:inputMask mask="99999-999" size="9" maxlength="9"
+									value="#{cadastroMedicoBean.medico.cep}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Cidade" for="cidade" />
+								<br />
+								<p:inputText id="cidade" size="40" maxlength="40"
+									value="#{cadastroMedicoBean.medico.cidade}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="UF" for="uf" />
+								<br />
+								<p:inputText id="uf" size="2" maxlength="2"
+									value="#{cadastroMedicoBean.medico.uf}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Pais" for="pais" />
+								<br />
+								<p:inputText id="pais" size="40" maxlength="40"
+									value="#{cadastroMedicoBean.medico.pais}" />
+							</h:column>
+
+						</h:panelGrid>
+					</p:tab>
+
+					<!-- contatos -->
+
+					<p:tab title="CONTATO">
+						<h:panelGrid id="gridContato" columns="6"
+							style="width: 100%; margin-top: 0px" columnClasses="campo">
+
+							<h:column>
+								<p:outputLabel value="Tipo Telefone" for="tipoTelefone1" />
+								<br />
+								<p:selectOneMenu id="tipoTelefone1"
+									value="#{cadastroMedicoBean.medico.tipoTelefone1}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItems value="#{cadastroMedicoBean.tipoTelefones}"
+										var="tipoTelefone1" itemLabel="#{tipoTelefone1.descricao}"
+										itemValue="#{tipoTelefone1}" />
+								</p:selectOneMenu>
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="DDD" for="ddd1" />
+								<br />
+								<p:inputText id="ddd1" size="3" maxlength="3"
+									value="#{cadastroMedicoBean.medico.ddd1}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Número Tel" for="numeroTel1" />
+								<br />
+								<p:inputText id="numeroTel1" size="12" maxlength="12"
+									value="#{cadastroMedicoBean.medico.numeroTel1}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Contato" for="contato1" />
+								<br />
+								<p:inputText id="contato1" size="30" maxlength="30"
+									value="#{cadastroMedicoBean.medico.contato1}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Email" for="email1" />
+								<br />
+								<p:inputText id="email1" size="60" maxlength="100"
+									value="#{cadastroMedicoBean.medico.email1}" />
+							</h:column>
+
+							<!-- contato2 -->
+
+							<h:column>
+								<p:outputLabel value="Tipo Telefone" for="tipoTelefone2" />
+								<br />
+								<p:selectOneMenu id="tipoTelefone2"
+									value="#{cadastroMedicoBean.medico.tipoTelefone2}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItems value="#{cadastroMedicoBean.tipoTelefones}"
+										var="tipoTelefone2" itemLabel="#{tipoTelefone2.descricao}"
+										itemValue="#{tipoTelefone2}" />
+								</p:selectOneMenu>
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="DDD 2" for="ddd2" />
+								<br />
+								<p:inputText id="ddd2" size="3" maxlength="3"
+									value="#{cadastroMedicoBean.medico.ddd2}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Número Tel 2" for="numeroTel2" />
+								<br />
+								<p:inputText id="numeroTel2" size="12" maxlength="12"
+									value="#{cadastroMedicoBean.medico.numeroTel2}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Contato 2" for="contato2" />
+								<br />
+								<p:inputText id="contato2" size="30" maxlength="30"
+									value="#{cadastroMedicoBean.medico.contato2}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Email 2" for="email2" />
+								<br />
+								<p:inputText id="email2" size="60" maxlength="100"
+									value="#{cadastroMedicoBean.medico.email2}" />
+							</h:column>
+
+							<!-- contato3 -->
+
+							<h:column>
+								<p:outputLabel value="Tipo Telefone" for="tipoTelefone3" />
+								<br />
+								<p:selectOneMenu id="tipoTelefone3"
+									value="#{cadastroMedicoBean.medico.tipoTelefone3}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItems value="#{cadastroMedicoBean.tipoTelefones}"
+										var="tipoTelefone3" itemLabel="#{tipoTelefone3.descricao}"
+										itemValue="#{tipoTelefone3}" />
+								</p:selectOneMenu>
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="DDD 3" for="ddd3" />
+								<br />
+								<p:inputText id="ddd3" size="3" maxlength="3"
+									value="#{cadastroMedicoBean.medico.ddd3}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Número Tel 3" for="numeroTel3" />
+								<br />
+								<p:inputText id="numeroTel3" size="12" maxlength="12"
+									value="#{cadastroMedicoBean.medico.numeroTel3}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Contato 3" for="contato3" />
+								<br />
+								<p:inputText id="contato3" size="30" maxlength="30"
+									value="#{cadastroMedicoBean.medico.contato3}" />
+							</h:column>
+
+							<h:column>
+								<p:outputLabel value="Email 3" for="email3" />
+								<br />
+								<p:inputText id="email3" size="60" maxlength="100"
+									value="#{cadastroMedicoBean.medico.email3}" />
+							</h:column>
+
+						</h:panelGrid>
+					</p:tab>
+				</p:tabView>
+
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
