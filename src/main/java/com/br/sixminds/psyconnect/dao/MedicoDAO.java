@@ -33,7 +33,7 @@ public class MedicoDAO implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<Medico> buscarTodos() {
-		return manager.createQuery("Select m from Medico m").getResultList();
+		return manager.createNamedQuery("Medico.buscarTodos").getResultList();
 	}
 
 	public void salvar(Medico medico) {

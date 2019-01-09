@@ -14,6 +14,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +32,10 @@ import com.br.sixminds.psyconnect.model.enums.TipoTelefone;
  */
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "Medico.buscarTodos", query = " select m from Medico m "
+		+ " left join fetch m.especialidadeMedica ")
+
+})
 @Table(name = "medico")
 @DiscriminatorValue("MEDICO")
 public class Medico extends Entidade {
@@ -51,9 +57,6 @@ public class Medico extends Entidade {
 	@JoinColumn(name = "codigo_especialidadeMedica")
 	private EspecialidadeMedica especialidadeMedica;
 
-	@ManyToOne
-	@JoinColumn(name = "codigo_agenda")
-	private Agenda agenda;
 
 	/* ENDERECO ESTABELECIMENTO */
 
@@ -144,14 +147,6 @@ public class Medico extends Entidade {
 
 	public void setEspecialidadeMedica(EspecialidadeMedica especialidadeMedica) {
 		this.especialidadeMedica = especialidadeMedica;
-	}
-
-	public Agenda getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
 	}
 
 	public TipoLogradouro getTipoLogradouro() {

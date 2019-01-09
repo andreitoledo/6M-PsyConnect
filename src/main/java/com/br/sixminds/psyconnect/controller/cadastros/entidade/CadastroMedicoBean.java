@@ -12,9 +12,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.br.sixminds.psyconnect.dao.AgendaDAO;
 import com.br.sixminds.psyconnect.dao.EspecialidadeMedicaDAO;
-import com.br.sixminds.psyconnect.model.Agenda;
 import com.br.sixminds.psyconnect.model.EspecialidadeMedica;
 import com.br.sixminds.psyconnect.model.Medico;
 import com.br.sixminds.psyconnect.model.enums.TipoLogradouro;
@@ -37,14 +35,9 @@ public class CadastroMedicoBean implements Serializable {
 	private Medico medico;
 
 	@Inject
-	private CadastroMedicoService cadastroMedicoService;
+	private CadastroMedicoService cadastroMedicoService;	
 
-	private List<Agenda> agendas;
-
-	private List<EspecialidadeMedica> especialidadeMedicas;
-
-	@Inject
-	private AgendaDAO agendaDAO;
+	private List<EspecialidadeMedica> especialidadeMedicas;	
 
 	@Inject
 	private EspecialidadeMedicaDAO especialidadeMedicaDAO;
@@ -57,8 +50,7 @@ public class CadastroMedicoBean implements Serializable {
 			limpar();
 
 		}
-
-		this.agendas = this.agendaDAO.buscarTodos();
+		
 		this.especialidadeMedicas = this.especialidadeMedicaDAO.buscarTodos();
 
 	}
@@ -90,10 +82,6 @@ public class CadastroMedicoBean implements Serializable {
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
-	}
-
-	public List<Agenda> getAgendas() {
-		return agendas;
 	}
 
 	public List<EspecialidadeMedica> getEspecialidadeMedicas() {

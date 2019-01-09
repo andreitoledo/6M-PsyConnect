@@ -98,21 +98,8 @@
 							var="especialidadeMedicas" itemLabel="#{especialidadeMedicas.nome}"
 							itemValue="#{especialidadeMedicas}" />
 					</p:selectOneMenu>
-				</p:column>
-				
-				<p:column>
-					<p:outputLabel value="Agenda" for="agenda" />
-					<br />
-					<p:selectOneMenu id="agenda"
-						value="#{cadastroMedicoBean.medico.agenda}">
-						<f:selectItem itemLabel="Selecione" />
-						<f:selectItems
-							value="#{cadastroMedicoBean.agendas}"
-							var="agendas" itemLabel="#{agendas.nome}"
-							itemValue="#{agendas}" />
-					</p:selectOneMenu>
-				</p:column>
-
+				</p:column>	
+			
 				</p:panelGrid>
 
 				<!-- endereço estabelecimento -->
