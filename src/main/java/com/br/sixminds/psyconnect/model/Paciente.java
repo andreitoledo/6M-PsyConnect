@@ -15,7 +15,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.br.sixminds.psyconnect.model.enums.TipoLogradouro;
@@ -33,11 +35,13 @@ public class Paciente extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual; // rg
+	@NotEmpty
 	@CPF
 	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf

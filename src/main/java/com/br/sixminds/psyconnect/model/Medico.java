@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
@@ -47,6 +48,7 @@ public class Medico extends Entidade {
 	private Date dataNascimento;
 	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual; // rg
+	@NotEmpty
 	@CPF	
 	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf

@@ -22,7 +22,7 @@
 
 			<p:panel>
 				<p:column>
-					<i><b> <p:outputLabel value="Código " for="codigo" /> <p:inputText
+					<i><b> <p:outputLabel value="Registro " for="codigo" /> <p:inputText
 								id="codigo" size="15" maxlength="15"
 								value="#{cadastroMedicoBean.medico.codigo}" readonly="true" />
 					</b></i>
@@ -48,48 +48,40 @@
 			<div class="ui-fluid">
 
 				<!-- começa a definir tela com os atributos -->
-				<p:panelGrid columns="3" id="painel"
-					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
-					<p:column>
+				<p:panelGrid columns="4" id="painel"
+					style="width: 100%; margin-top: 20px" 
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+					layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
+					
+					
 						<p:outputLabel value="Nome" for="nome" />
-						<br />
 						<p:inputText id="nome" size="60" maxlength="80"
+						placeholder="nome" required="true"
 							value="#{cadastroMedicoBean.medico.nome}" />
-					</p:column>
 
-					<p:column>
-						<h:outputText value="CPF" />
-						<br />
+						<h:outputText value="CPF *" />
 						<p:inputMask mask="999.999.999-99" required="true"
+						placeholder="cpf"
 							requiredMessage="O CPF é obrigatório" size="14" maxlength="14"
 							value="#{cadastroMedicoBean.medico.inscricaoFederal}" />
-					</p:column>
 
-					<p:column>
 						<p:outputLabel value="RG" for="inscricaoEstadual" />
-						<br />
 						<p:inputText id="inscricaoEstadual" size="20" maxlength="20"
+						placeholder="rg"
 							value="#{cadastroMedicoBean.medico.inscricaoEstadual}" />
-					</p:column>
 
-					<p:column>
 						<p:outputLabel value="Data Nascimento" for="dataNascimento" />
-						<br />
 						<p:calendar id="dataNascimento" size="10"
+						placeholder="data de nascimento"
 							value="#{cadastroMedicoBean.medico.dataNascimento}"
 							pattern="dd/MM/yyyy" />
-					</p:column>
 					
-					<p:column>
 						<p:outputLabel value="CRM" for="crm" />
-						<br />
 						<p:inputText id="crm" size="20" maxlength="20"
+						placeholder="crm" required="true"
 							value="#{cadastroMedicoBean.medico.crm}" />
-					</p:column>
 					
-					<p:column>
 					<p:outputLabel value="Especialidade" for="especialidadeMedica" />
-					<br />
 					<p:selectOneMenu id="especialidadeMedica"
 						value="#{cadastroMedicoBean.medico.especialidadeMedica}">
 						<f:selectItem itemLabel="Selecione" />
@@ -98,19 +90,20 @@
 							var="especialidadeMedicas" itemLabel="#{especialidadeMedicas.nome}"
 							itemValue="#{especialidadeMedicas}" />
 					</p:selectOneMenu>
-				</p:column>	
 			
 				</p:panelGrid>
 
 				<!-- endereço estabelecimento -->
+				
 				<p:tabView>
+				<div class="ui-fluid">
 					<p:tab title="ENDEREÇO">
-						<h:panelGrid id="gridEndereco" columns="3"
-							style="width: 100%; margin-top: 0px" columnClasses="campo">
+						<h:panelGrid id="gridEndereco" columns="2"
+							style="width: 100%; margin-top: 0px" 
+							columnClasses="ui-grid-col-4, ui-grid-col-8" layout="grid"
+							styleClass="ui-panelgrid-blank panelgrid-noborder">
 
-							<h:column>
 								<p:outputLabel value="Tipo Logradouro" for="tipoLogradouro" />
-								<br />
 								<p:selectOneMenu id="tipoLogradouro"
 									value="#{cadastroMedicoBean.medico.tipoLogradouro}">
 									<f:selectItem itemLabel="Selecione" />
@@ -118,63 +111,46 @@
 										var="tipoLogradouro" itemLabel="#{tipoLogradouro.descricao}"
 										itemValue="#{tipoLogradouro}" />
 								</p:selectOneMenu>
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Logradouro" for="logradouro" />
-								<br />
 								<p:inputText id="logradouro" size="60" maxlength="60"
+								placeholder="logradouro"
 									value="#{cadastroMedicoBean.medico.logradouro}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Numero" for="numero" />
-								<br />
 								<p:inputText id="numero" size="10" maxlength="10"
+								placeholder="número"
 									value="#{cadastroMedicoBean.medico.numero}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Complemento" for="complemento" />
-								<br />
 								<p:inputText id="complemento" size="60" maxlength="60"
+								placeholder="complemento"
 									value="#{cadastroMedicoBean.medico.complemento}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Bairro" for="bairro" />
-								<br />
 								<p:inputText id="bairro" size="40" maxlength="40"
+								placeholder="bairro"
 									value="#{cadastroMedicoBean.medico.bairro}" />
-							</h:column>
 
-							<h:column>
 								<h:outputText value="CEP" />
-								<br />
 								<p:inputMask mask="99999-999" size="9" maxlength="9"
+								placeholder="cep"
 									value="#{cadastroMedicoBean.medico.cep}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Cidade" for="cidade" />
-								<br />
 								<p:inputText id="cidade" size="40" maxlength="40"
+								placeholder="cidade" required="true"
 									value="#{cadastroMedicoBean.medico.cidade}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="UF" for="uf" />
-								<br />
 								<p:inputText id="uf" size="2" maxlength="2"
+								placeholder="uf"
 									value="#{cadastroMedicoBean.medico.uf}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Pais" for="pais" />
-								<br />
 								<p:inputText id="pais" size="40" maxlength="40"
+								placeholder="pais"
 									value="#{cadastroMedicoBean.medico.pais}" />
-							</h:column>
 
 						</h:panelGrid>
 					</p:tab>
@@ -182,12 +158,12 @@
 					<!-- contatos -->
 
 					<p:tab title="CONTATO">
-						<h:panelGrid id="gridContato" columns="6"
-							style="width: 100%; margin-top: 0px" columnClasses="campo">
+						<h:panelGrid id="gridContato" columns="2"
+							style="width: 100%; margin-top: 0px" 
+							columnClasses="ui-grid-col-4, ui-grid-col-8"
+								layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
 
-							<h:column>
 								<p:outputLabel value="Tipo Telefone" for="tipoTelefone1" />
-								<br />
 								<p:selectOneMenu id="tipoTelefone1"
 									value="#{cadastroMedicoBean.medico.tipoTelefone1}">
 									<f:selectItem itemLabel="Selecione" />
@@ -195,123 +171,26 @@
 										var="tipoTelefone1" itemLabel="#{tipoTelefone1.descricao}"
 										itemValue="#{tipoTelefone1}" />
 								</p:selectOneMenu>
-							</h:column>
 
-							<h:column>
-								<p:outputLabel value="DDD" for="ddd1" />
-								<br />
-								<p:inputText id="ddd1" size="3" maxlength="3"
-									value="#{cadastroMedicoBean.medico.ddd1}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Número Tel" for="numeroTel1" />
-								<br />
+								<p:outputLabel value="Número" for="numeroTel1" />
 								<p:inputText id="numeroTel1" size="12" maxlength="12"
+								placeholder="(99) 9999-99999"
 									value="#{cadastroMedicoBean.medico.numeroTel1}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Contato" for="contato1" />
-								<br />
 								<p:inputText id="contato1" size="30" maxlength="30"
+								placeholder="digite o contato"
 									value="#{cadastroMedicoBean.medico.contato1}" />
-							</h:column>
 
-							<h:column>
 								<p:outputLabel value="Email" for="email1" />
-								<br />
 								<p:inputText id="email1" size="60" maxlength="100"
+								placeholder="digite o e-mail"
 									value="#{cadastroMedicoBean.medico.email1}" />
-							</h:column>
-
-							<!-- contato2 -->
-
-							<h:column>
-								<p:outputLabel value="Tipo Telefone" for="tipoTelefone2" />
-								<br />
-								<p:selectOneMenu id="tipoTelefone2"
-									value="#{cadastroMedicoBean.medico.tipoTelefone2}">
-									<f:selectItem itemLabel="Selecione" />
-									<f:selectItems value="#{cadastroMedicoBean.tipoTelefones}"
-										var="tipoTelefone2" itemLabel="#{tipoTelefone2.descricao}"
-										itemValue="#{tipoTelefone2}" />
-								</p:selectOneMenu>
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="DDD 2" for="ddd2" />
-								<br />
-								<p:inputText id="ddd2" size="3" maxlength="3"
-									value="#{cadastroMedicoBean.medico.ddd2}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Número Tel 2" for="numeroTel2" />
-								<br />
-								<p:inputText id="numeroTel2" size="12" maxlength="12"
-									value="#{cadastroMedicoBean.medico.numeroTel2}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Contato 2" for="contato2" />
-								<br />
-								<p:inputText id="contato2" size="30" maxlength="30"
-									value="#{cadastroMedicoBean.medico.contato2}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Email 2" for="email2" />
-								<br />
-								<p:inputText id="email2" size="60" maxlength="100"
-									value="#{cadastroMedicoBean.medico.email2}" />
-							</h:column>
-
-							<!-- contato3 -->
-
-							<h:column>
-								<p:outputLabel value="Tipo Telefone" for="tipoTelefone3" />
-								<br />
-								<p:selectOneMenu id="tipoTelefone3"
-									value="#{cadastroMedicoBean.medico.tipoTelefone3}">
-									<f:selectItem itemLabel="Selecione" />
-									<f:selectItems value="#{cadastroMedicoBean.tipoTelefones}"
-										var="tipoTelefone3" itemLabel="#{tipoTelefone3.descricao}"
-										itemValue="#{tipoTelefone3}" />
-								</p:selectOneMenu>
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="DDD 3" for="ddd3" />
-								<br />
-								<p:inputText id="ddd3" size="3" maxlength="3"
-									value="#{cadastroMedicoBean.medico.ddd3}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Número Tel 3" for="numeroTel3" />
-								<br />
-								<p:inputText id="numeroTel3" size="12" maxlength="12"
-									value="#{cadastroMedicoBean.medico.numeroTel3}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Contato 3" for="contato3" />
-								<br />
-								<p:inputText id="contato3" size="30" maxlength="30"
-									value="#{cadastroMedicoBean.medico.contato3}" />
-							</h:column>
-
-							<h:column>
-								<p:outputLabel value="Email 3" for="email3" />
-								<br />
-								<p:inputText id="email3" size="60" maxlength="100"
-									value="#{cadastroMedicoBean.medico.email3}" />
-							</h:column>
 
 						</h:panelGrid>
 					</p:tab>
-				</p:tabView>
+					</div>
+				</p:tabView>				
 
 			</div>
 

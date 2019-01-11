@@ -31,13 +31,17 @@
 				paginator="true" paginatorAlwaysVisible="true"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Código"
+				<p:column headerText="Código" priority="3"
 					style="text-align: center; width: 100px">
 					<h:outputText value="#{agenda.codigo}" />
 				</p:column>
 
-				<p:column headerText="Nome" priority="2">
+				<p:column headerText="Nome" priority="1">
 					<h:outputText value="#{agenda.nome}" />
+				</p:column>
+				
+				<p:column headerText="Data/Hora da Consulta" priority="2">
+					<h:outputText value="#{agenda.dataCriacao}" />
 				</p:column>
 
 				<!-- botão editar -->
