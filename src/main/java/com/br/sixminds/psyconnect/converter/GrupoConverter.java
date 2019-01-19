@@ -1,7 +1,7 @@
 /**
  * @author andrei
  *
- * 5 de dez de 2018
+ * 13 de jan de 2019
  */
 package com.br.sixminds.psyconnect.converter;
 
@@ -13,36 +13,26 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.br.sixminds.psyconnect.dao.UsuarioDAO;
-import com.br.sixminds.psyconnect.model.Usuario;
+import com.br.sixminds.psyconnect.dao.GrupoDAO;
+import com.br.sixminds.psyconnect.model.Grupo;
 
 /**
  * @author andrei
  *
  */
-@FacesConverter(forClass = Usuario.class)
-public class UsuarioConverter implements Converter {
- 
-	//private Usuarios usuarios;
+@FacesConverter(forClass = Grupo.class)
+public class GrupoConverter implements Converter {
 
 	@Inject
-	private UsuarioDAO usuarioDAO;
-
-	/*public UsuarioConverter() {
-		this.usuarios = (Usuarios) CDIServiceLocator.getBean(Usuarios.class);
-	}*/
+	private GrupoDAO grupoDAO;
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		
-		Usuario retorno = null;
 
-		/*if (value != null) {
-			retorno = this.usuarios.porCodigo(new Long(value));
-		}*/
+		Grupo retorno = null;
 
 		if (StringUtils.isNotEmpty(value)) {
-			retorno = this.usuarioDAO.buscarPeloCodigo(new Long(value));
+			retorno = this.grupoDAO.buscarPeloCodigo(new Long(value));
 
 		}
 
@@ -54,12 +44,11 @@ public class UsuarioConverter implements Converter {
 
 		if (value != null) {
 
-			Long codigo = ((Usuario) value).getCodigo();
+			Long codigo = ((Grupo) value).getCodigo();
 			String retorno = (codigo == null ? null : codigo.toString());
 
-			// return ((Usuario) value).getCodigo().toString();
-
 			return retorno;
+
 		}
 
 		return "";

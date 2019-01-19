@@ -41,6 +41,7 @@
 	<http pattern="/Login.xhtml" security="none" />	
 	<http pattern="/Erro.xhtml" security="none" />
 	<http pattern="/javax.faces.resource/**" security="none" />
+	
 
 	<!-- configura automaticamente a tela de login  / false-->
 	<http auto-config="false" use-expressions="true">
@@ -48,16 +49,17 @@
 		<!-- traduz a a excessão -->
 		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 
-		<!-- define os acessos -->
+		<!-- definindo acessos -->
 		<intercept-url pattern="/Inicio.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		
-		<intercept-url pattern="/cadastros/entidades/paciente/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
-		<!-- <intercept-url pattern="/cadastros/entidades/medico/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" /> -->
+		<intercept-url pattern="/cadastros/entidades/paciente/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />		
 		<intercept-url pattern="/cadastros/entidades/medico/**"	access="hasAnyRole('MEDICOS', 'ADMINISTRADORES')" />
 		
 		<intercept-url pattern="/cadastros/parametros/especialidadeMedica/**" access="hasAnyRole('ADMINISTRADORES')" />
-		<intercept-url pattern="/cadastros/parametros/agenda/**" access="hasAnyRole('ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/parametros/agenda/**" access="hasAnyRole('ADMINISTRADORES')" />		
+		<intercept-url pattern="/cadastros/parametros/usuario/**" access="hasAnyRole('ADMINISTRADORES')" />
+		
 		
 		<intercept-url pattern="/**" access="denyAll" />
 
