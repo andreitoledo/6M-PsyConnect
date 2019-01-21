@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="titulo">Pesquisa Consulta Medica</ui:define>
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:viewAction action="#{cadastroConsultaMedicaBean.inicializar}"></f:viewAction>
+		</f:metadata>
+
+		<h2>| Sistema PsyConnect | <SMALL>Manutenção Consultas Médicas</SMALL></h2>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo"
+						outcome="/cadastros/parametros/consultaMedica/CadastroConsultaMedica" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="consultasMedicasTable"
+				value="#{pesquisaConsultaMedicaBean.consultasMedicas}"
+				var="consultaMedica" style="margin-top: 20px"
+				emptyMessage="Nenhuma Consulta Médica encontrada." rows="10"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Consulta" priority="3"
+					style="text-align: center; width: 100px"
+					sortBy="#{consultaMedica.codigo}" filterBy="#{consultaMedica.codigo}">
+					<h:outputText value="#{consultaMedica.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" priority="1"
+				sortBy="#{consultaMedica.nome}" filterBy="#{consultaMedica.nome}">
+					<h:outputText value="#{consultaMedica.nome}" />
+				</p:column>
+				
+				<p:column headerText="Data/Hora da Consulta" priority="2"
+				sortBy="#{consultaMedica.dataCriacao}" filterBy="#{consultaMedica.dataCriacao}">
+					<h:outputText value="#{consultaMedica.dataCriacao}" />
+				</p:column>
+
+				<!-- botão editar -->
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroConsultaMedica" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="consultaMedica" value="#{consultaMedica.codigo}" />
+					</p:button>
+					
+					<!-- botao excluir -->
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+						update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener
+							target="#{pesquisaConsultaMedicaBean.consultaMedicaSelecionado}"
+							value="#{consultaMedica}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog id="confirmacaoExclusaoDialog"
+				widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir a Consulta Medica #{pesquisaConsultaMedicaBean.consultaMedicaSelecionado.nome}?"
+				header="Exclusão da Consulta Médica" severity="alert">
+				<p:button value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim" update=":frmPesquisa:consultasMedicasTable"
+					onclick="PF('confirmacaoExclusao').hide()"
+					action="#{pesquisaConsultaMedicaBean.excluir}" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

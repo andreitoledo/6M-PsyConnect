@@ -60,6 +60,7 @@
 		<intercept-url pattern="/cadastros/parametros/agenda/**" access="hasAnyRole('ADMINISTRADORES')" />		
 		<intercept-url pattern="/cadastros/parametros/usuario/**" access="hasAnyRole('ADMINISTRADORES')" />
 		<intercept-url pattern="/cadastros/parametros/grupo/**" access="hasAnyRole('ADMINISTRADORES')" />
+		<intercept-url pattern="/cadastros/parametros/consultaMedica/**" access="hasAnyRole('PACIENTES', 'ADMINISTRADORES')" />
 		
 		
 		<intercept-url pattern="/**" access="denyAll" />

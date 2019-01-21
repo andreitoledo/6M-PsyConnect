@@ -29,20 +29,24 @@
 				emptyMessage="Nenhum medico encontrado." rows="10" paginator="true"
 				paginatorAlwaysVisible="true" paginatorPosition="bottom">
 
-				<p:column headerText="Registro" priority="4"
-					style="text-align: center; width: 100px">
+				<!-- <p:column headerText="Registro" priority="4"
+					style="text-align: center; width: 100px"
+					sortBy="#{medico.codigo}" filterBy="#{medico.codigo}">
 					<h:outputText value="#{medico.codigo}" />
-				</p:column>
+				</p:column> -->
 
-				<p:column headerText="Nome" priority="1">
+				<p:column headerText="Nome" priority="1"
+				sortBy="#{medico.nome}" filterBy="#{medico.nome}">
 					<h:outputText value="#{medico.nome}" />
 				</p:column>
 
-				<p:column headerText="CPF" priority="2">
+				<p:column headerText="CPF" priority="2"
+				sortBy="#{medico.inscricaoFederal}" filterBy="#{medico.inscricaoFederal}">
 					<h:outputText value="#{medico.inscricaoFederal}" />
 				</p:column>
 
-				<p:column headerText="CRM" priority="3">
+				<p:column headerText="CRM" priority="3"
+				sortBy="#{medico.crm}" filterBy="#{medico.crm}">
 					<h:outputText value="#{medico.crm}" />
 				</p:column>
 
