@@ -20,14 +20,14 @@
 		<h:form id="frmCadastro">
 			<p:messages id="messages" autoUpdate="true" closable="true" />
 
-			<p:panel>
+			<!-- <p:panel>
 				<p:column>
 					<i><b> <p:outputLabel value="Registro " for="codigo" /> <p:inputText
 								id="codigo" size="15" maxlength="15"
 								value="#{cadastroMedicoBean.medico.codigo}" readonly="true" />
 					</b></i>
 				</p:column>
-			</p:panel>
+			</p:panel> -->
 
 
 			<!-- botão salvar -->
@@ -49,59 +49,61 @@
 
 				<!-- começa a definir tela com os atributos -->
 				<p:panelGrid columns="4" id="painel"
-					style="width: 100%; margin-top: 20px" 
+					style="width: 100%; margin-top: 20px"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
 					layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
-					
-					
-						<p:outputLabel value="Nome" for="nome" />
-						<p:inputText id="nome" size="60" maxlength="80"
-						placeholder="nome" required="true"
-							value="#{cadastroMedicoBean.medico.nome}" />
 
-						<h:outputText value="CPF *" />
-						<p:inputMask mask="999.999.999-99" required="true"
-						placeholder="cpf"
-							requiredMessage="O CPF é obrigatório" size="14" maxlength="14"
-							value="#{cadastroMedicoBean.medico.inscricaoFederal}" />
 
-						<p:outputLabel value="RG" for="inscricaoEstadual" />
-						<p:inputText id="inscricaoEstadual" size="20" maxlength="20"
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome" size="60" maxlength="80" placeholder="nome"
+						required="true" value="#{cadastroMedicoBean.medico.nome}" />
+
+					<h:outputText value="CPF *" />
+					<p:inputMask mask="999.999.999-99" required="true"
+						placeholder="cpf" requiredMessage="O CPF é obrigatório" size="14"
+						maxlength="14"
+						value="#{cadastroMedicoBean.medico.inscricaoFederal}">
+						<f:attribute name="uniqueColumn" value="inscricaoFederal" />
+					</p:inputMask>
+
+					<p:outputLabel value="RG" for="inscricaoEstadual" />
+					<p:inputText id="inscricaoEstadual" size="20" maxlength="20"
 						placeholder="rg"
-							value="#{cadastroMedicoBean.medico.inscricaoEstadual}" />
+						value="#{cadastroMedicoBean.medico.inscricaoEstadual}" />
 
-						<p:outputLabel value="Data Nascimento" for="dataNascimento" />
-						<p:calendar id="dataNascimento" size="10"
+					<p:outputLabel value="Data Nascimento" for="dataNascimento" />
+					<p:calendar id="dataNascimento" size="10"
 						placeholder="data de nascimento"
-							value="#{cadastroMedicoBean.medico.dataNascimento}"
-							pattern="dd/MM/yyyy" />
-					
-						<p:outputLabel value="CRM" for="crm" />
-						<p:inputText id="crm" size="20" maxlength="20"
-						placeholder="crm" required="true"
-							value="#{cadastroMedicoBean.medico.crm}" />
-					
+						value="#{cadastroMedicoBean.medico.dataNascimento}"
+						pattern="dd/MM/yyyy" />
+
+					<p:outputLabel value="CRM" for="crm" />
+					<p:inputText id="crm" size="20" maxlength="20" placeholder="crm"
+						required="true" value="#{cadastroMedicoBean.medico.crm}">
+						<f:attribute name="uniqueColumn" value="crm" />
+					</p:inputText>
+
 					<p:outputLabel value="Especialidade" for="especialidadeMedica" />
 					<p:selectOneMenu id="especialidadeMedica"
 						value="#{cadastroMedicoBean.medico.especialidadeMedica}">
 						<f:selectItem itemLabel="Selecione" />
-						<f:selectItems
-							value="#{cadastroMedicoBean.especialidadeMedicas}"
-							var="especialidadeMedicas" itemLabel="#{especialidadeMedicas.nome}"
+						<f:selectItems value="#{cadastroMedicoBean.especialidadeMedicas}"
+							var="especialidadeMedicas"
+							itemLabel="#{especialidadeMedicas.nome}"
 							itemValue="#{especialidadeMedicas}" />
 					</p:selectOneMenu>
-			
+
 				</p:panelGrid>
 
 				<!-- endereço estabelecimento -->
-				
+
 				<p:tabView>
-				<div class="ui-fluid">
-					<p:tab title="ENDEREÇO">
-						<h:panelGrid id="gridEndereco" columns="2"
-							style="width: 100%; margin-top: 0px" 
-							columnClasses="ui-grid-col-4, ui-grid-col-8" layout="grid"
-							styleClass="ui-panelgrid-blank panelgrid-noborder">
+					<div class="ui-fluid">
+						<p:tab title="ENDEREÇO">
+							<h:panelGrid id="gridEndereco" columns="2"
+								style="width: 100%; margin-top: 0px"
+								columnClasses="ui-grid-col-4, ui-grid-col-8" layout="grid"
+								styleClass="ui-panelgrid-blank panelgrid-noborder">
 
 								<p:outputLabel value="Tipo Logradouro" for="tipoLogradouro" />
 								<p:selectOneMenu id="tipoLogradouro"
@@ -114,54 +116,51 @@
 
 								<p:outputLabel value="Logradouro" for="logradouro" />
 								<p:inputText id="logradouro" size="60" maxlength="60"
-								placeholder="logradouro"
+									placeholder="logradouro"
 									value="#{cadastroMedicoBean.medico.logradouro}" />
 
 								<p:outputLabel value="Numero" for="numero" />
 								<p:inputText id="numero" size="10" maxlength="10"
-								placeholder="número"
+									placeholder="número"
 									value="#{cadastroMedicoBean.medico.numero}" />
 
 								<p:outputLabel value="Complemento" for="complemento" />
 								<p:inputText id="complemento" size="60" maxlength="60"
-								placeholder="complemento"
+									placeholder="complemento"
 									value="#{cadastroMedicoBean.medico.complemento}" />
 
 								<p:outputLabel value="Bairro" for="bairro" />
 								<p:inputText id="bairro" size="40" maxlength="40"
-								placeholder="bairro"
+									placeholder="bairro"
 									value="#{cadastroMedicoBean.medico.bairro}" />
 
 								<h:outputText value="CEP" />
 								<p:inputMask mask="99999-999" size="9" maxlength="9"
-								placeholder="cep"
-									value="#{cadastroMedicoBean.medico.cep}" />
+									placeholder="cep" value="#{cadastroMedicoBean.medico.cep}" />
 
 								<p:outputLabel value="Cidade" for="cidade" />
 								<p:inputText id="cidade" size="40" maxlength="40"
-								placeholder="cidade" required="true"
+									placeholder="cidade" required="true"
 									value="#{cadastroMedicoBean.medico.cidade}" />
 
 								<p:outputLabel value="UF" for="uf" />
-								<p:inputText id="uf" size="2" maxlength="2"
-								placeholder="uf"
+								<p:inputText id="uf" size="2" maxlength="2" placeholder="uf"
 									value="#{cadastroMedicoBean.medico.uf}" />
 
 								<p:outputLabel value="Pais" for="pais" />
 								<p:inputText id="pais" size="40" maxlength="40"
-								placeholder="pais"
-									value="#{cadastroMedicoBean.medico.pais}" />
+									placeholder="pais" value="#{cadastroMedicoBean.medico.pais}" />
 
-						</h:panelGrid>
-					</p:tab>
+							</h:panelGrid>
+						</p:tab>
 
-					<!-- contatos -->
+						<!-- contatos -->
 
-					<p:tab title="CONTATO">
-						<h:panelGrid id="gridContato" columns="2"
-							style="width: 100%; margin-top: 0px" 
-							columnClasses="ui-grid-col-4, ui-grid-col-8"
-								layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
+						<p:tab title="CONTATO">
+							<h:panelGrid id="gridContato" columns="2"
+								style="width: 100%; margin-top: 0px"
+								columnClasses="ui-grid-col-4, ui-grid-col-8" layout="grid"
+								styleClass="ui-panelgrid-blank panelgrid-noborder">
 
 								<p:outputLabel value="Tipo Telefone" for="tipoTelefone1" />
 								<p:selectOneMenu id="tipoTelefone1"
@@ -174,23 +173,23 @@
 
 								<p:outputLabel value="Número" for="numeroTel1" />
 								<p:inputText id="numeroTel1" size="12" maxlength="12"
-								placeholder="(99) 9999-99999"
+									placeholder="(99) 9999-99999"
 									value="#{cadastroMedicoBean.medico.numeroTel1}" />
 
 								<p:outputLabel value="Contato" for="contato1" />
 								<p:inputText id="contato1" size="30" maxlength="30"
-								placeholder="digite o contato"
+									placeholder="digite o contato"
 									value="#{cadastroMedicoBean.medico.contato1}" />
 
 								<p:outputLabel value="Email" for="email1" />
 								<p:inputText id="email1" size="60" maxlength="100"
-								placeholder="digite o e-mail"
+									placeholder="digite o e-mail"
 									value="#{cadastroMedicoBean.medico.email1}" />
 
-						</h:panelGrid>
-					</p:tab>
+							</h:panelGrid>
+						</p:tab>
 					</div>
-				</p:tabView>				
+				</p:tabView>
 
 			</div>
 

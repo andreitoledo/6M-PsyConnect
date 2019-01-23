@@ -36,14 +36,14 @@ public class Paciente extends Entidade {
 	private static final long serialVersionUID = 1L;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)	
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual; // rg
 	@NotEmpty
 	@CPF
-	@Column(name = "inscricao_federal")
+	@Column(name = "inscricao_federal", unique = true)
 	private String inscricaoFederal; // cpf
 
 	/* ENDERECO ESTABELECIMENTO */
