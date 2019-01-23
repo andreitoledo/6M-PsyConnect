@@ -27,7 +27,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,15 +35,14 @@ public class Usuario implements Serializable {
 	@Column(nullable = false, length = 80)
 	private String nome;
 	@Column(nullable = false, unique = true, length = 255)
-	@Email	
+	@Email
 	private String email;
 	@Column(nullable = false, length = 20)
 	@NotEmpty
 	private String senha;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_codigo"), 
-	             inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
+	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_codigo"), inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<>();
 
 	public Long getCodigo() {

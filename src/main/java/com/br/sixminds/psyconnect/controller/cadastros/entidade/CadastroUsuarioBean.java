@@ -28,10 +28,10 @@ public class CadastroUsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario usuario;
-
+	
 	@Inject
 	private CadastroUsuarioService cadastroUsuarioService;
-	
+
 	@Inject
 	private FacesMessages facesMessages;
 
@@ -40,7 +40,7 @@ public class CadastroUsuarioBean implements Serializable {
 			limpar();
 
 		}
-		
+
 	}
 
 	/**
@@ -70,6 +70,7 @@ public class CadastroUsuarioBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
 
 	public boolean isEditando() {
 		return this.usuario.getCodigo() != null;
