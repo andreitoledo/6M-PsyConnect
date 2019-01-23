@@ -19,16 +19,6 @@
 		<h:form id="frmCadastro">
 			<p:messages id="messages" autoUpdate="true" closable="true" />
 
-			<!-- <p:panel>
-				<p:column>
-					<i><b> <p:outputLabel value="Código " for="codigo" /> <p:inputText
-								id="codigo" size="15" maxlength="15"
-								value="#{cadastroConsultaMedicaBean.consultaMedica.codigo}" readonly="true" />
-					</b></i>
-				</p:column>
-			</p:panel> -->
-
-
 			<!-- botão salvar -->
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
@@ -46,31 +36,32 @@
 			<div class="ui-fluid">
 
 				<!-- começa a definir tela com os atributos -->
-				<p:panelGrid columns="2" layout="grid" id="painel"
-					style="width: 100%; margin-top: 20px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-1, ui-grid-col-11">
+				<p:panelGrid columns="4" id="painel"
+					style="width: 100%; margin-top: 20px"					
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+					layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
 
 
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" size="60" maxlength="80"
 						value="#{cadastroConsultaMedicaBean.consultaMedica.nome}" />
+						
 
-					<p:column>
-						<p:outputLabel value="Data Agendamento" for="dataCriacao" />
-						<br />
+
+						<p:outputLabel value="Data Agendamento" for="dataCriacao" />						
 						<p:calendar id="dataCriacao" size="10"
 							value="#{cadastroConsultaMedicaBean.consultaMedica.dataCriacao}"
 							pattern="dd/MM/yyyy HH:mm"/>						
-					</p:column>
+					
 
-					<h:panelGroup layout="block" style="padding-right: 10px">
-						<p:inputTextarea rows="10" style="width: 100%"
+					<h:panelGroup layout="block" style="padding-right: 20px">
+					<p:outputLabel value="Observação" />
+						<p:inputTextarea rows="3" style="width: 500%" 
 							value="#{cadastroConsultaMedicaBean.consultaMedica.observacao}" />
 					</h:panelGroup>
 					
-					<p:outputLabel></p:outputLabel>
-					<p:outputLabel></p:outputLabel>
+				
+					
 
 				</p:panelGrid>
 
