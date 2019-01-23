@@ -5,14 +5,14 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/Layout.xhtml">
 
-	<ui:define name="titulo">Pesquisa usuarios</ui:define>
+	<ui:define name="titulo">Pesquisa tipos pessoas</ui:define>
 
 	<ui:define name="content">
 		<f:metadata>
-			<f:viewAction action="#{cadastroUsuarioBean.inicializar}"></f:viewAction>
+			<f:viewAction action="#{cadastroTipoPessoaBean.inicializar}"></f:viewAction>
 		</f:metadata>
 
-		<h2>| Sistema PsyConnect | <SMALL>Manutenção de Usuários</SMALL></h2>
+		<h2>| Sistema PsyConnect | <SMALL>Manutenção de Tipos Pessoas</SMALL></h2>
 
 		<h:form id="frmPesquisa">
 			<p:messages id="messages" autoUpdate="true" closable="true" />
@@ -20,35 +20,31 @@
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
 					<p:button value="Novo"
-						outcome="/cadastros/parametros/usuario/CadastroUsuario" />
+						outcome="/cadastros/parametros/tipoPessoa/CadastroTipoPessoa" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<p:dataTable id="usuariosTable"
-				value="#{pesquisaUsuarioBean.usuarios}"
-				var="usuario" style="margin-top: 20px"
-				emptyMessage="Nenhum Usuário encontrado." rows="10"
+			<p:dataTable id="tipoPessoasTable"
+				value="#{pesquisaTipoPessoaBean.tipoPessoas}"
+				var="tipoPessoa" style="margin-top: 20px"
+				emptyMessage="Nenhum Tipo Pessoa encontrado." rows="10"
 				paginator="true" paginatorAlwaysVisible="true"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Registro" priority="3"
+				<p:column headerText="Código" priority="2"
 					style="text-align: center; width: 100px">
-					<h:outputText value="#{usuario.codigo}" />
+					<h:outputText value="#{tipoPessoa.codigo}" />
 				</p:column>
 
-				<p:column headerText="Nome" priority="1">
-					<h:outputText value="#{usuario.nome}" />
-				</p:column>
-				
-				<p:column headerText="E-mail" priority="2">
-					<h:outputText value="#{usuario.email}" />
+				<p:column headerText="Descrição" priority="1">
+					<h:outputText value="#{tipoPessoa.descricao}" />
 				</p:column>
 
 				<!-- botão editar -->
 				<p:column style="width: 100px; text-align: center">
-					<p:button outcome="CadastroUsuario" icon="ui-icon-pencil"
+					<p:button outcome="CadastroTipoPessoa" icon="ui-icon-pencil"
 						title="Editar">
-						<f:param name="usuario" value="#{usuario.codigo}" />
+						<f:param name="tipoPessoa" value="#{tipoPessoa.codigo}" />
 					</p:button>
 					
 					<!-- botao excluir -->
@@ -56,21 +52,21 @@
 						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
 						update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener
-							target="#{pesquisaUsuarioBean.usuarioSelecionado}"
-							value="#{usuario}" />
+							target="#{pesquisaTipoPessoaBean.tipoPessoaSelecionado}"
+							value="#{tipoPessoa}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
 			<p:confirmDialog id="confirmacaoExclusaoDialog"
 				widgetVar="confirmacaoExclusao"
-				message="Tem certeza que deseja excluir o usuário #{pesquisaUsuarioBean.usuarioSelecionado.nome}?"
-				header="Exclusão de usuário" severity="alert">
+				message="Tem certeza que deseja excluir o tipo pessoa #{pesquisaTipoPessoaBean.tipoPessoaSelecionado.nome}?"
+				header="Exclusão de tipo pessoa" severity="alert">
 				<p:button value="Não"
 					onclick="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim" update=":frmPesquisa:usuariosTable"
+				<p:commandButton value="Sim" update=":frmPesquisa:tipoPessoasTable"
 					onclick="PF('confirmacaoExclusao').hide()"
-					action="#{pesquisaUsuarioBean.excluir}" />
+					action="#{pesquisaTipoPessoaBean.excluir}" />
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>
