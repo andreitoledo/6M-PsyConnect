@@ -16,9 +16,19 @@
 	color: #fff;
 }
 
+/* BOTÃO CADASTRAR*/
+#aw-cadastrar {
+	float: right;
+	line-height: 50px;
+	margin-right: 250px;
+	
+	color: #ff0000;
+}
+
 /* MENU */
 .aw-menu {
 	font-size: 1.1em;
+	margin-top: 50px;
 }
 
 .aw-menu > ul {
