@@ -20,10 +20,31 @@
 #aw-cadastrar {
 	float: right;
 	line-height: 50px;
-	margin-right: 250px;
+	margin-right: 250px;	
 	margin-top: 10px;
 	
 	color: #ff0000;
+	background: lemonchiffon;
+}
+
+
+/* CUMPRIMENTO*/
+.aw-cumprimento {
+	float: left;
+	height: 30px;
+	line-height: 50px;		
+	color: #d4b482;		
+	
+}
+
+/* BOTÃO ADMIN*/
+.aw-btn-admin {	
+	margin-right: 60px;
+	height: 15px;
+	width: 50px;	
+	line-height: 50px;		
+	/* background: #364f65; */
+	
 }
 
 /* MENU */

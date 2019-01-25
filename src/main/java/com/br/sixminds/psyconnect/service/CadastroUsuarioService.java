@@ -26,6 +26,12 @@ public class CadastroUsuarioService implements Serializable {
 
 	@Transactional
 	public void salvar(Usuario usuario) throws NegocioException {
+		
+		if (usuario.getNome() == null 
+			|| usuario.getNome().equals("Selecione")){
+		throw new NegocioException("O Nome deve ser informado.");
+		
+		}
 
 		this.usuarioDAO.salvar(usuario);
 	}

@@ -36,16 +36,38 @@
 			<div class="ui-fluid">
 
 				<!-- começa a definir tela com os atributos -->
-				<p:panelGrid columns="4" id="painel"
+				<p:panelGrid columns="2" id="panel_cabecalho"
 					style="width: 100%; margin-top: 20px"					
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
-					layout="grid" styleClass="ui-panelgrid-blank panelgrid-noborder">
+					columnClasses="ui-grid-col-8, ui-grid-col-8"
+					layout="grid" styleClass="panelgrid-noborder">
+					
+					
+					<!-- inicio buscando pelo codigo -->
+					<h:panelGroup>
+						<p:outputLabel value="Médico" for="medico" />
+						<br />
+						<p:inputText id="medico"
+							value="#{cadastroConsultaMedicaBean.nomeMedico}"
+							readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
 
+						<p:commandButton icon="ui-icon-search" title="Pesquisa"
+							action="#{selecaoEntidadeBean.abrirDialogo}" process="@this"
+							update="@none">
+							<p:ajax event="dialogReturn"
+								listener="#{cadastroConsultaMedicaBean.medicoSelecionado}"
+								process="@this" update="medico" />
+							<p:resetInput target="medico" />
+						</p:commandButton>
+					</h:panelGroup>
 
-					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" size="60" maxlength="80"
-						value="#{cadastroConsultaMedicaBean.consultaMedica.nome}" />
-						
+					<!-- fim buscando pelo codigo -->
+					
+					</p:panelGrid>
+					
+					<p:panelGrid columns="2" layout="grid" id="panel1"
+					style="width: 100%; margin-top: 0px"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-8, ui-grid-col-8">
 
 
 						<p:outputLabel value="Data Agendamento" for="dataCriacao" />						

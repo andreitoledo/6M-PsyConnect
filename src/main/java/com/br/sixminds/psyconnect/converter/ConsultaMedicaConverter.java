@@ -32,6 +32,7 @@ public class ConsultaMedicaConverter implements Converter {
 
 		ConsultaMedica retorno = null;
 
+		/*isNotEmpty = não está vazio*/
 		if (StringUtils.isNotEmpty(value)) {
 			retorno = this.consultaMedicaDAO.buscarPeloCodigo(new Long(value));
 

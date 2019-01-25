@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -45,9 +46,10 @@ public class Usuario implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_codigo"), inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<>();
-
+	
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "codigo_tipoPessoa")
+	@JoinColumn(name = "codigo_tipoPessoa" , nullable = false)	
 	private TipoPessoa tipoPessoa;
 
 	public Long getCodigo() {

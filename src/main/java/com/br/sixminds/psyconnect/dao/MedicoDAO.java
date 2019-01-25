@@ -53,4 +53,10 @@ public class MedicoDAO implements Serializable {
 		}
 	}
 
+	public List<Medico> porNomeSemelhante(String nome) {
+
+		return manager.createQuery("from Medico where nome like :nome", Medico.class)
+				.setParameter("nome", "%" + nome + "%").getResultList();
+	}
+
 }

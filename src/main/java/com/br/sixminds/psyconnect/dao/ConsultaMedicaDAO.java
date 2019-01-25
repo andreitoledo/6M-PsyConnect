@@ -59,10 +59,25 @@ public class ConsultaMedicaDAO implements Serializable {
 
 	}
 
-	public List<ConsultaMedica> porNomeSemelhante(String nome) {
+	public List<ConsultaMedica> porDescricaoSemelhante(String descricao) {
 
-		return manager.createQuery("from ConsultaMedica where nome like :nome", ConsultaMedica.class)
-				.setParameter("nome", "%" + nome + "%").getResultList();
+		return manager
+				.createQuery("from ConsultaMedica where descricao like :descricao",
+						ConsultaMedica.class)
+				.setParameter("descricao", "%" + descricao + "%")
+				.getResultList();
 	}
+	
+	
+	public List<ConsultaMedica> porDescricao(String descricao) {
+		return this.manager
+				.createQuery(
+						"from ConsultaMedica where upper(descricao) like :descricao",
+						ConsultaMedica.class)
+				.setParameter("descricao", descricao.toUpperCase() + "%")
+				.getResultList();
+
+	}
+	
 
 }

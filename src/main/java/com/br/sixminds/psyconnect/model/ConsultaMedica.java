@@ -13,7 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,7 +29,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@Table(name = "consultaMedica")
+@NamedQueries({ @NamedQuery(name = "ConsultaMedica.buscarTodos", query = " select cp from ConsultaMedica cp "
+		+ " left join fetch cp.medico ")
+})
 public class ConsultaMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,6 +50,10 @@ public class ConsultaMedica implements Serializable {
 
 	@Column(columnDefinition = "text")
 	private String observacao;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_medico")
+	private Medico medico;
 
 	public Long getCodigo() {
 		return codigo;
@@ -76,6 +85,14 @@ public class ConsultaMedica implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	@Override
