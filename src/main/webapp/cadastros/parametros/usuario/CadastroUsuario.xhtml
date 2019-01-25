@@ -64,6 +64,17 @@
 
 					<p:outputLabel value="Senha" for="senha" />
 					<p:password id="senha" value="#{cadastroUsuarioBean.usuario.senha}" feedback="true" required="true"/>
+					
+					<p:outputLabel value="Tipo Pessoa" for="tipoPessoa" />
+					<p:selectOneMenu id="tipoPessoa"
+						value="#{cadastroUsuarioBean.usuario.tipoPessoa}">
+						<f:selectItem itemLabel="Selecione" />
+						
+						<f:selectItems value="#{cadastroUsuarioBean.tipoPessoas}"
+							var="tipoPessoas"
+							itemLabel="#{tipoPessoas.nome}"
+							itemValue="#{tipoPessoas}" />
+					</p:selectOneMenu>
  
 				</p:panelGrid>
 

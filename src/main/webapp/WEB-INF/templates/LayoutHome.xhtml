@@ -42,27 +42,7 @@
 				name="images/PsyConnect_barra.png" width="200" height="100" />
 		</h:link>
 
-
-		<!-- <div style="float: right; margin-right: 110px">
-			<span
-				style="float: left; height: 30px; line-height: 50px; margin-right: 60px">
-				Olá #{seguranca.nomeUsuario} ! </span>
-		</div> -->
-
-		<!-- <a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
-		<a href="http://localhost:8080/6M-PsyConnect/j_spring_security_logout"
-			class="aw-sair"> <i class="fa  fa-sign-out"></i></a>
-		 -->
-
-		<!-- <div style="float: right; margin-right: 10px">
-			<span
-				style="float: left; height: 15px ;width: 50px ; line-height: 50px; margin-right: 60px">
-				<ui:include src="MenuAdmin.xhtml" />
-			</span>
-		</div>	 -->			
-
 	</header>
-
 
 	<!-- inicio barra aw-topbar2 -->
 	<header class="aw-topbar2">
@@ -72,6 +52,21 @@
 				name="images/PsyConnect_barra.png" width="100" height="50" />
 		</h:link> -->
 
+		<h:form id="frm" prependId="false">
+
+			<p:commandButton id="aw-cadastrar" value="ENTRAR OU CADASTRAR"
+				ajax="false" action="/Login.xhtml"></p:commandButton>
+
+			<!-- <p:commandButton id="aw-cadastrar" 
+                value="ENTRAR OU CADASTRAR" 
+                ajax="false" 
+                action="/Login.xhtml"  
+                onclick="this.form.target='_blank'"></p:commandButton> -->
+
+			<!-- 			<h2>Entrar ou Cadastrar <h:link value="Cadastrar" outcome="/Login.xhtml" /></h2> -->
+
+		</h:form>
+
 
 		<div style="float: right; margin-right: 110px">
 			<span
@@ -79,29 +74,13 @@
 				Olá #{seguranca.nomeUsuario} ! </span>
 		</div>
 
-		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
 		<a href="http://localhost:8080/6M-PsyConnect/j_spring_security_logout"
 			class="aw-sair"> <i class="fa  fa-sign-out"></i></a>
 
-
-		<div style="float: right; margin-right: 10px">
-			<span
-				style="float: left; height: 15px; width: 50px; line-height: 50px; margin-right: 60px">
-				<ui:include src="MenuAdmin.xhtml" />
-			</span>
-		</div>
-
-
 	</header>
 
-
-	<!-- inicio menu lateral esquerdo -->
-	<aside class="aw-sidebar  js-sidebar">
-		<ui:include src="Menu.xhtml" />
-	</aside>
-
-	<section class="aw-content  js-content">
-		<ui:insert name="content" />
+	<section class="aw-contenthome  js-content">
+		<ui:insert name="contenthome" />
 	</section>
 
 	<footer>

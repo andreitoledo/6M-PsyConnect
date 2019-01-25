@@ -34,7 +34,7 @@ public class ConsultaMedicaDAO implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<ConsultaMedica> buscarTodos() {
-		return manager.createQuery("Select cm from ConsultaMedica cm").getResultList();
+		return manager.createNamedQuery("ConsultaMedica.buscarTodos").getResultList();
 
 	}
 
@@ -42,6 +42,7 @@ public class ConsultaMedicaDAO implements Serializable {
 		manager.merge(consultaMedica);
 
 	}
+	
 
 	@Transactional
 	public void excluir(ConsultaMedica consultaMedica) throws NegocioException {
@@ -56,6 +57,12 @@ public class ConsultaMedicaDAO implements Serializable {
 
 		}
 
+	}
+
+	public List<ConsultaMedica> porNomeSemelhante(String nome) {
+
+		return manager.createQuery("from ConsultaMedica where nome like :nome", ConsultaMedica.class)
+				.setParameter("nome", "%" + nome + "%").getResultList();
 	}
 
 }

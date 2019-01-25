@@ -40,6 +40,7 @@ public class CadastroTipoPessoaBean implements Serializable {
 			limpar();
 
 		}
+
 	}
 
 	private void limpar() {

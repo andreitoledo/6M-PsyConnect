@@ -39,13 +39,18 @@
 				sortBy="#{medico.nome}" filterBy="#{medico.nome}">
 					<h:outputText value="#{medico.nome}" />
 				</p:column>
+				
+				<p:column headerText="Especialidade Médica" priority="2" sortBy="#{medico.especialidadeMedica}"
+					filterBy="#{medico.especialidadeMedica}">
+					<h:outputText value="#{medico.especialidadeMedica.nome}" />
+				</p:column>
 
-				<p:column headerText="CPF" priority="2"
+				<p:column headerText="CPF" priority="3"
 				sortBy="#{medico.inscricaoFederal}" filterBy="#{medico.inscricaoFederal}">
 					<h:outputText value="#{medico.inscricaoFederal}" />
 				</p:column>
 
-				<p:column headerText="CRM" priority="3"
+				<p:column headerText="CRM" priority="4"
 				sortBy="#{medico.crm}" filterBy="#{medico.crm}">
 					<h:outputText value="#{medico.crm}" />
 				</p:column>

@@ -42,7 +42,7 @@
 	<http pattern="/Erro.xhtml" security="none" />
 	<http pattern="/javax.faces.resource/**" security="none" />
 	<http pattern="/TelaCriarConta.xhtml" security="none" />
-	<http pattern="/InicioPesquisaMedico.xhtml" security="none" />
+	<http pattern="/Home.xhtml" security="none" />
 	
 	
 

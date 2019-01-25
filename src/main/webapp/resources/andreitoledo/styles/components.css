@@ -16,11 +16,12 @@
 	color: #fff;
 }
 
-/* BOTÃO CADASTRAR*/
+/* BOTï¿½O CADASTRAR*/
 #aw-cadastrar {
 	float: right;
 	line-height: 50px;
 	margin-right: 250px;
+	margin-top: 10px;
 	
 	color: #ff0000;
 }
@@ -68,7 +69,7 @@
 /* PAGE-TITLE */
 .aw-page-title {
 	margin: 0;
-	padding: 20px 0;
+	padding: 35px 0;
 	
 	font-size: 1.5em;
 	color: #373737;

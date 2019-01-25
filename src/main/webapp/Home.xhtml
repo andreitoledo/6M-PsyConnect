@@ -1,70 +1,59 @@
-<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/LayoutHome.xhtml">
 
-	<ui:define name="titulo">Dashboard</ui:define>
+	<ui:define name="titulo">Cadastro de usuários</ui:define>
 
-	<ui:define name="content">		
-
-		<div id="mod_topo">
-			<h1>6Minds | Sistema PsyConnect</h1>
-		</div>		
-		
-		
-
-		<div class="mod_texto">
-		
+	<ui:define name="contenthome">
+		<f:metadata>
+			<f:viewAction action="#{cadastroMedicoBean.inicializar}"></f:viewAction>
+		</f:metadata>
 		<br />
+		<h2>| Sistema PsyConnect | Especialistas</h2>
 
-			<p>O módulo de Vendas do Sistema ERP ALTOL permite o
-				gerenciamento completo do processo de vendas, desde o orçamento e
-				confirmação do pedido até o processo de separação de mercadoria e
-				emissão de romaneio a transportadora. Além de cobrir todo o processo
-				operacional, o módulo possui relatórios para comparação de
-				resultados de vendas, permitindo análise em diversos níveis de
-				detalhamento.</p>
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
 
-			<p>Veja alguns dos recursos básicos deste módulo:</p>
+			<p:dataTable id="medicosTable" value="#{pesquisaMedicoBean.medicos}"
+				var="medico" style="margin-top: 20px"
+				emptyMessage="Nenhum medico encontrado." rows="10" paginator="true"
+				paginatorAlwaysVisible="true" paginatorPosition="bottom">
 
-			<ul>
-				<li><i>Metas de vendas</i></li>
-				<li><i>Análise de limite de crédito/títulos pendentes</i></li>
-				<li><i>Troca/Devolução de mercadoria</i></li>
-				<li><i>Promoção e descontos por produtos</i></li>
-				<li><i>Integração com Pedidos Web (B2B), e-commerce (B2C) e
-						vendas para celular (Mobile)</i></li>
-				<li><i>Controle de comissões</i></li>
-				<li><i>Várias formatações de tabelas de preços</i></li>
-				<li><i>Workflow de pedidos</i></li>
-				<li><i>Segmentação de regiões e carteira de clientes</i></li>
-			</ul>
-		</div>
+				
+				<p:column headerText="Especialidade Médica" priority="2" sortBy="#{medico.especialidadeMedica}"
+					filterBy="#{medico.especialidadeMedica}">
+					<h:outputText value="#{medico.especialidadeMedica.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Nome" priority="1" sortBy="#{medico.nome}"
+					filterBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
+				</p:column>
 
-
-		<div class="mod_img">
-			<h:graphicImage library="imagens" name="diagrama/FLUXOGRAMA_CONSULTA.jpeg"
-				alt="Sistema ERP ALTOL - diagrama módulo de vendas"
-				title="Sistema ERP ALTOL - diagrama módulo de vendas" />
-		</div>
-
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />		
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />	
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />	
-	
+				<!-- <p:column headerText="CPF" priority="2"
+					sortBy="#{medico.inscricaoFederal}"
+					filterBy="#{medico.inscricaoFederal}">
+					<h:outputText value="#{medico.inscricaoFederal}" />
+				</p:column> -->
+				
+				<p:column headerText="Cidade" priority="3" sortBy="#{medico.cidade}"
+					filterBy="#{medico.cidade}">
+					<h:outputText value="#{medico.cidade}" />
+				</p:column>
 
 
- 		
+				<!-- botão editar -->
+				<p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar">
+					</p:button>
+
+
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
 	</ui:define>
-
-	<ui:define name="footer"></ui:define>
-
-
 </ui:composition>

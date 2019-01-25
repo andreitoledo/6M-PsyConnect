@@ -6,11 +6,14 @@
 package com.br.sixminds.psyconnect.controller.cadastros.entidade;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.br.sixminds.psyconnect.dao.TipoPessoaDAO;
+import com.br.sixminds.psyconnect.model.TipoPessoa;
 import com.br.sixminds.psyconnect.model.Usuario;
 import com.br.sixminds.psyconnect.service.CadastroUsuarioService;
 import com.br.sixminds.psyconnect.service.NegocioException;
@@ -29,6 +32,11 @@ public class CadastroUsuarioBean implements Serializable {
 
 	private Usuario usuario;
 
+	private List<TipoPessoa> tipoPessoas;
+
+	@Inject
+	private TipoPessoaDAO tipoPessoaDAO;
+
 	@Inject
 	private CadastroUsuarioService cadastroUsuarioService;
 
@@ -40,6 +48,8 @@ public class CadastroUsuarioBean implements Serializable {
 			limpar();
 
 		}
+
+		this.tipoPessoas = this.tipoPessoaDAO.buscarTodos();
 
 	}
 
@@ -69,6 +79,10 @@ public class CadastroUsuarioBean implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<TipoPessoa> getTipoPessoas() {
+		return tipoPessoas;
 	}
 
 	public boolean isEditando() {

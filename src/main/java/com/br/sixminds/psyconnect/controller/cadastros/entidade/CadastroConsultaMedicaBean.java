@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.br.sixminds.psyconnect.model.ConsultaMedica;
-import com.br.sixminds.psyconnect.model.Paciente;
 import com.br.sixminds.psyconnect.service.CadastroConsultaMedicaService;
 import com.br.sixminds.psyconnect.service.NegocioException;
 import com.br.sixminds.psyconnect.util.jsf.FacesMessages;
