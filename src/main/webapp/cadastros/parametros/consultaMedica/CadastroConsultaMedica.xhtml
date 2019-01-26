@@ -68,13 +68,15 @@
 					style="width: 100%; margin-top: 0px"
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-8, ui-grid-col-8">
-
+					
+					<p:outputLabel value="Nome do paciente" for="nome" />
+					<p:inputText id="nome" size="60" maxlength="80" placeholder="nome"
+						required="true" value="#{cadastroConsultaMedicaBean.consultaMedica.nome}" />
 
 						<p:outputLabel value="Data Agendamento" for="dataCriacao" />						
 						<p:calendar id="dataCriacao" size="10"
 							value="#{cadastroConsultaMedicaBean.consultaMedica.dataCriacao}"
 							pattern="dd/MM/yyyy HH:mm"/>						
-					
 
 					<h:panelGroup layout="block" style="padding-right: 20px">
 					<p:outputLabel value="Observação" />

@@ -12,7 +12,9 @@
 			<f:viewAction action="#{cadastroConsultaMedicaBean.inicializar}"></f:viewAction>
 		</f:metadata>
 
-		<h2>| Sistema PsyConnect | <SMALL>Manutenção Consultas Médicas</SMALL></h2>
+		<h2>
+			| Sistema PsyConnect | <SMALL>Manutenção Consultas Médicas</SMALL>
+		</h2>
 
 		<h:form id="frmPesquisa">
 			<p:messages id="messages" autoUpdate="true" closable="true" />
@@ -33,17 +35,24 @@
 
 				<p:column headerText="Consulta" priority="3"
 					style="text-align: center; width: 100px"
-					sortBy="#{consultaMedica.codigo}" filterBy="#{consultaMedica.codigo}">
+					sortBy="#{consultaMedica.codigo}"
+					filterBy="#{consultaMedica.codigo}">
 					<h:outputText value="#{consultaMedica.codigo}" />
 				</p:column>
 
-				<p:column headerText="Nome" priority="1"
-				sortBy="#{consultaMedica.nome}" filterBy="#{consultaMedica.nome}">
+				<p:column headerText="Paciente" priority="1"
+					sortBy="#{consultaMedica.nome}" filterBy="#{consultaMedica.nome}">
 					<h:outputText value="#{consultaMedica.nome}" />
 				</p:column>
-				
+
+				<p:column headerText="Médico" priority="1"
+				sortBy="#{consultaMedica.medico.nome}" filterBy="#{consultaMedica.medico.nome}">
+					<h:outputText value="#{consultaMedica.medico.nome}" />
+				</p:column>
+
 				<p:column headerText="Data/Hora da Consulta" priority="2"
-				sortBy="#{consultaMedica.dataCriacao}" filterBy="#{consultaMedica.dataCriacao}">
+					sortBy="#{consultaMedica.dataCriacao}"
+					filterBy="#{consultaMedica.dataCriacao}">
 					<h:outputText value="#{consultaMedica.dataCriacao}" />
 				</p:column>
 
@@ -53,7 +62,7 @@
 						title="Editar">
 						<f:param name="consultaMedica" value="#{consultaMedica.codigo}" />
 					</p:button>
-					
+
 					<!-- botao excluir -->
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
@@ -71,7 +80,8 @@
 				header="Exclusão da Consulta Médica" severity="alert">
 				<p:button value="Não"
 					onclick="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim" update=":frmPesquisa:consultasMedicasTable"
+				<p:commandButton value="Sim"
+					update=":frmPesquisa:consultasMedicasTable"
 					onclick="PF('confirmacaoExclusao').hide()"
 					action="#{pesquisaConsultaMedicaBean.excluir}" />
 			</p:confirmDialog>
