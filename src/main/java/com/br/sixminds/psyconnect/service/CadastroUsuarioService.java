@@ -27,8 +27,9 @@ public class CadastroUsuarioService implements Serializable {
 	@Transactional
 	public void salvar(Usuario usuario) throws NegocioException {
 		
+		/*regra: nome precisa ser informado*/
 		if (usuario.getNome() == null 
-			|| usuario.getNome().equals("Selecione")){
+			|| usuario.getNome().equals("")){
 		throw new NegocioException("O Nome deve ser informado.");
 		
 		}

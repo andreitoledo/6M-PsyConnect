@@ -16,7 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author andrei
@@ -34,7 +34,7 @@ public abstract class Entidade implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private Long codigo;
-	@NotEmpty
+	@NotBlank
 	private String nome;
 
 	public Long getCodigo() {

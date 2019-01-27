@@ -19,7 +19,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -49,14 +51,15 @@ public class Medico extends Entidade {
 	private String inscricaoEstadual; // rg
 	@NotEmpty
 	@CPF	
-	@Column(name = "inscricao_federal", unique = true)
+	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf
-	@NotEmpty
-	@Column(name = "crm" , unique = true)
+	@NotBlank
+	@Column(name = "crm")
 	private String crm; // crm
 
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "codigo_especialidadeMedica")
+	@JoinColumn(name = "codigo_especialidadeMedica", nullable = false)
 	private EspecialidadeMedica especialidadeMedica;
 
 

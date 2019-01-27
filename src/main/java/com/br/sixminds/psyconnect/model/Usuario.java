@@ -23,7 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
@@ -34,13 +34,14 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	@NotBlank
 	@Column(nullable = false, length = 80)
 	private String nome;
 	@Column(nullable = false, unique = true, length = 255)
 	@Email
 	private String email;
 	@Column(nullable = false, length = 20)
-	@NotEmpty
+	@NotBlank
 	private String senha;
 
 	@ManyToMany(cascade = CascadeType.ALL)

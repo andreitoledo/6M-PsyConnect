@@ -58,5 +58,12 @@ public class MedicoDAO implements Serializable {
 		return manager.createQuery("from Medico where nome like :nome", Medico.class)
 				.setParameter("nome", "%" + nome + "%").getResultList();
 	}
+	
+	public List<Medico> porCpfSemelhante(String inscricaoFederal) {
+
+		return manager.createQuery("from Medico where inscricaoFederal like :inscricaoFederal", Medico.class)
+				.setParameter("inscricaoFederal", "%" + inscricaoFederal + "%").getResultList();
+	}
+
 
 }

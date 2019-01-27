@@ -27,10 +27,6 @@ public class CadastroPacienteService implements Serializable {
 
 	@Transactional
 	public void salvar(Paciente paciente) throws NegocioException {
-		
-		/*regra: deixar o CPF único*/
-		
-		
 
 		this.pacienteDAO.salvar(paciente);
 

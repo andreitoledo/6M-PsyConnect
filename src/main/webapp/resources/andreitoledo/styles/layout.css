@@ -60,21 +60,21 @@
 /* CONTENT */
 .aw-content {
 	padding: 0 15px;
-	margin-top: 50px;
+	margin-top: 140px;
 	transition: margin-left 0.5s;
 }
 
 /* CONTENT HOME */
 .aw-contenthome {
 	padding: 0 15px;
-	margin-top: 100px;
+	margin-top: 140px;
 	transition: margin-left 0.5s;
 }
 
 @media (min-width: 960px) {
 	.aw-content {
 		margin-left: 210px;
-		margin-top: 100px;
+		margin-top: 140px;
 		
 	}
 	
@@ -85,7 +85,7 @@
 	
 	aw-contenthome {
 		margin-left: 210px;
-		margin-top: 100px;
+		margin-top: 140px;
 		
 	}
 	

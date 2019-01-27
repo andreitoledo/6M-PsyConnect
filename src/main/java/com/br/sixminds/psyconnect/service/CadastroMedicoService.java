@@ -25,9 +25,24 @@ public class CadastroMedicoService implements Serializable{
 	private MedicoDAO medicoDAO;
 	
 	@Transactional
-	public void salvar(Medico medico) throws NegocioException {
+	public void salvar(Medico medico) throws NegocioException {		
+		
+		/*regra: verifica se o CPF já existe.*/
+		String inscricaoFederal = null;
+		if (medico.getInscricaoFederal().equals(medicoDAO.porCpfSemelhante(inscricaoFederal))) {
+			throw new NegocioException("CPF já existente.");			
+		}
+		
+		/*regra: especialidade deve ser informada*/
+		if (medico.getEspecialidadeMedica() == null 
+				|| medico.getEspecialidadeMedica().equals("Selecione")) {
+			throw new NegocioException("A especialidade deve ser informada.");
+			
+		}
 		
 		this.medicoDAO.salvar(medico);
+		
+		
 		
 	}
 

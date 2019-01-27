@@ -43,7 +43,7 @@ public class Paciente extends Entidade {
 	private String inscricaoEstadual; // rg
 	@NotEmpty
 	@CPF
-	@Column(name = "inscricao_federal", unique = true)
+	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf
 
 	/* ENDERECO ESTABELECIMENTO */

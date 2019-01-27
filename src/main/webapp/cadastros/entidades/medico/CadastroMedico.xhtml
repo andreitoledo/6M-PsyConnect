@@ -62,8 +62,7 @@
 					<p:inputMask mask="999.999.999-99" required="true"
 						placeholder="cpf" requiredMessage="O CPF é obrigatório" size="14"
 						maxlength="14"
-						value="#{cadastroMedicoBean.medico.inscricaoFederal}">
-						<f:attribute name="uniqueColumn" value="inscricaoFederal" />
+						value="#{cadastroMedicoBean.medico.inscricaoFederal}">						
 					</p:inputMask>
 
 					<p:outputLabel value="RG" for="inscricaoEstadual" />
@@ -79,8 +78,7 @@
 
 					<p:outputLabel value="CRM" for="crm" />
 					<p:inputText id="crm" size="20" maxlength="20" placeholder="crm"
-						required="true" value="#{cadastroMedicoBean.medico.crm}">
-						<f:attribute name="uniqueColumn" value="crm" />
+						required="true" value="#{cadastroMedicoBean.medico.crm}">						
 					</p:inputText>
 
 					<p:outputLabel value="Especialidade" for="especialidadeMedica" />

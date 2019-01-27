@@ -12,48 +12,42 @@
 			<f:viewAction action="#{cadastroMedicoBean.inicializar}"></f:viewAction>
 		</f:metadata>
 		<br />
-		<h2>| Sistema PsyConnect | Especialistas</h2>
+		<h2>| Sistema PsyConnect | Relação de Especialistas</h2>
 
 		<h:form id="frmPesquisa">
 			<p:messages id="messages" autoUpdate="true" closable="true" />
 
 			<p:dataTable id="medicosTable" value="#{pesquisaMedicoBean.medicos}"
 				var="medico" style="margin-top: 20px"
-				emptyMessage="Nenhum especialista encontrado." rows="10" paginator="true"
-				paginatorAlwaysVisible="true" paginatorPosition="bottom">
+				emptyMessage="Nenhum especialista encontrado." rows="10"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
 
-				
-				<p:column headerText="Especialidade Médica" priority="2" sortBy="#{medico.especialidadeMedica}"
-					filterBy="#{medico.especialidadeMedica}">
-					<h:outputText value="#{medico.especialidadeMedica.descricao}" />
-				</p:column>
-				
-				<p:column headerText="Nome" priority="1" sortBy="#{medico.nome}"
-					filterBy="#{medico.nome}">
-					<h:outputText value="#{medico.nome}" />
+
+				<p:column headerText="Especialidade" priority="2"
+					sortBy="#{medico.especialidadeMedica.nome}"
+					filterBy="#{medico.especialidadeMedica.nome}">
+					<h:outputText value="#{medico.especialidadeMedica.nome}" />
 				</p:column>
 
-				<!-- <p:column headerText="CPF" priority="2"
-					sortBy="#{medico.inscricaoFederal}"
-					filterBy="#{medico.inscricaoFederal}">
-					<h:outputText value="#{medico.inscricaoFederal}" />
-				</p:column> -->
-				
 				<p:column headerText="Cidade" priority="3" sortBy="#{medico.cidade}"
 					filterBy="#{medico.cidade}">
 					<h:outputText value="#{medico.cidade}" />
 				</p:column>
 
+				<p:column headerText="Nome" priority="1" sortBy="#{medico.nome}"
+					filterBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
+				</p:column>
 
-				<!-- botão editar -->
+				<!-- botão consultar -->
 				<p:column style="width: 100px; text-align: center">
-					<p:button icon="ui-icon-pencil" title="Editar">
+					<p:button outcome="TelaCriarConta" icon="ui-icon-check"
+						title="Consultar">
 					</p:button>
-
-
 				</p:column>
 			</p:dataTable>
-
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
