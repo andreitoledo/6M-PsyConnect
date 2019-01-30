@@ -50,7 +50,7 @@ public class Medico extends Entidade {
 	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual; // rg
 	@NotEmpty
-	@CPF	
+	@CPF
 	@Column(name = "inscricao_federal")
 	private String inscricaoFederal; // cpf
 	@NotBlank
@@ -62,6 +62,9 @@ public class Medico extends Entidade {
 	@JoinColumn(name = "codigo_especialidadeMedica", nullable = false)
 	private EspecialidadeMedica especialidadeMedica;
 
+	@ManyToOne
+	@JoinColumn(name = "codigo_consultaMedica")
+	private ConsultaMedica consultaMedica;
 
 	/* ENDERECO ESTABELECIMENTO */
 
@@ -152,6 +155,14 @@ public class Medico extends Entidade {
 
 	public void setEspecialidadeMedica(EspecialidadeMedica especialidadeMedica) {
 		this.especialidadeMedica = especialidadeMedica;
+	}
+
+	public ConsultaMedica getConsultaMedica() {
+		return consultaMedica;
+	}
+
+	public void setConsultaMedica(ConsultaMedica consultaMedica) {
+		this.consultaMedica = consultaMedica;
 	}
 
 	public TipoLogradouro getTipoLogradouro() {

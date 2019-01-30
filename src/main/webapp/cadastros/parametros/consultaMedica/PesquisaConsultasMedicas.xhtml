@@ -33,24 +33,29 @@
 				paginator="true" paginatorAlwaysVisible="true"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Consulta" priority="3"
+				<p:column headerText="Consulta" priority="5"
 					style="text-align: center; width: 100px"
 					sortBy="#{consultaMedica.codigo}"
 					filterBy="#{consultaMedica.codigo}">
 					<h:outputText value="#{consultaMedica.codigo}" />
 				</p:column>
 
-				<p:column headerText="Paciente" priority="1"
+				<p:column headerText="Nome do Paciente" priority="1"
 					sortBy="#{consultaMedica.nome}" filterBy="#{consultaMedica.nome}">
 					<h:outputText value="#{consultaMedica.nome}" />
 				</p:column>
 
-				<p:column headerText="Médico" priority="1"
+				<p:column headerText="Nome do Especialista" priority="2"
 				sortBy="#{consultaMedica.medico.nome}" filterBy="#{consultaMedica.medico.nome}">
 					<h:outputText value="#{consultaMedica.medico.nome}" />
 				</p:column>
+				
+				<p:column headerText="Especialidade" priority="4" 
+				sortBy="#{consultaMedica.medico.especialidadeMedica.descricao}" filterBy="#{consultaMedica.medico.especialidadeMedica.descricao}">
+					<h:outputText value="#{consultaMedica.medico.especialidadeMedica.descricao}" />
+				</p:column>
 
-				<p:column headerText="Data/Hora da Consulta" priority="2"
+				<p:column headerText="Data/Hora da Consulta" priority="3"
 					sortBy="#{consultaMedica.dataCriacao}"
 					filterBy="#{consultaMedica.dataCriacao}">
 					<h:outputText value="#{consultaMedica.dataCriacao}" />

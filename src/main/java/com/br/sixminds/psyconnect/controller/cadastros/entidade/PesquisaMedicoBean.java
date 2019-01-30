@@ -56,9 +56,7 @@ public class PesquisaMedicoBean implements Serializable {
 		try {
 			medicoDAO.excluir(medicoSelecionado);
 			this.medicos.remove(medicoSelecionado);
-			facesmessages.info("Medico " 
-			   + medicoSelecionado.getNome() 
-			   + " excluído com sucesso.");
+			facesmessages.info("Medico " + medicoSelecionado.getNome() + " excluído com sucesso.");
 
 		} catch (NegocioException e) {
 			facesmessages.error(e.getMessage());

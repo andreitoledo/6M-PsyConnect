@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="titulo">6Minds - PsyConnect</ui:define>
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="medico" value="#{cadastroMedicoBean.medico}" />
+			<f:viewAction action="#{cadastroMedicoBean.inicializar}"></f:viewAction>
+			<f:viewAction action="#{cadastroConsultaMedicaBean.inicializar}"></f:viewAction>
+		</f:metadata>
+
+		<h2>| Sistema PsyConnect | marcando consultas</h2>
+
+		<script>
+			function tratarInclusaoProduto(args) {
+				if (!args.validationFailed) {
+					marcarConsultaDialog.hide();
+				}
+			}
+		</script>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<!-- <p:panel>
+				<p:column>
+					<i><b> <p:outputLabel value="Registro " for="codigo" /> <p:inputText
+								id="codigo" size="15" maxlength="15"
+								value="#{cadastroMedicoBean.medico.codigo}" readonly="true" />
+					</b></i>
+				</p:column>
+			</p:panel> -->
+
+			<p:dataTable id="medicosTable" value="#{pesquisaMedicoBean.medicos}"
+				var="medico" style="margin-top: 20px"
+				emptyMessage="Nenhum especialista encontrado." rows="10"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Codigo" priority="4" sortBy="#{medico.codigo}"
+					filterBy="#{medico.codigo}">
+					<h:outputText value="#{medico.codigo}" />
+				</p:column>
+
+				<p:column headerText="Especialidade" priority="2"
+					sortBy="#{medico.especialidadeMedica.nome}"
+					filterBy="#{medico.especialidadeMedica.nome}">
+					<h:outputText value="#{medico.especialidadeMedica.nome}" />
+				</p:column>
+
+				<p:column headerText="Cidade" priority="3" sortBy="#{medico.cidade}"
+					filterBy="#{medico.cidade}">
+					<h:outputText value="#{medico.cidade}" />
+				</p:column>
+
+				<p:column headerText="Nome" priority="1" sortBy="#{medico.nome}"
+					filterBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
+				</p:column>
+
+				<!-- inicio botões -->
+				<!-- botão marcar consulta - tipo altera-->
+				<!-- <p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-check" title="Marcar Consulta"
+						onclick="PF('marcarConsultaDialog').show(); return false;">
+						<f:param name="medico" value="#{medico.codigo}" />
+					</p:button> -->
+					
+					<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroMarcarConsulta" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="medico" value="#{medico.codigo}" />
+					</p:button>
+					
+
+
+					<!-- botão marcar consulta - tipo excluir-->
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('marcarConsultaDialog').show()" process="@this">
+						<f:setPropertyActionListener
+							target="#{pesquisaMedicoBean.medicoSelecionado}"
+							value="#{medico}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<!-- janela dialog para cadastrar as consultas -->
+
+			<p:dialog header="Marcar Consulta" widgetVar="marcarConsultaDialog"
+				resizable="false" modal="false">
+
+				<h:panelGroup id="inclusaoPanel">
+					<p:messages />
+					<h:panelGrid columns="2">
+
+						<p:panel>
+							<p:column>
+								<i><b> <p:outputLabel value="Registro " for="codigo" />
+										<p:inputText id="codigo" size="15" maxlength="15"
+											value="#{pesquisaMedicoBean.medicoSelecionado.codigo}" readonly="true" />											
+								</b></i>
+							</p:column>
+						</p:panel>
+
+						<!-- <p:column headerText="Codigo">
+							<h:outputText
+								value="#{pesquisaMedicoBean.medicoSelecionado.codigo}" />
+						</p:column> -->
+
+
+						<p:outputLabel value="Nome" />
+						<p:inputText
+							value="#{cadastroConsultaMedicaBean.consultaMedica.nome}"
+							required="true" requiredMessage="Informe o nome do paciente." />
+
+
+						<p:outputLabel value="Data Agendamento" for="dataCriacao" />
+						<p:calendar id="dataCriacao" size="10"
+							value="#{cadastroConsultaMedicaBean.consultaMedica.dataCriacao}"
+							pattern="dd/MM/yyyy HH:mm" />
+
+						<h:panelGroup layout="block" style="padding-right: 20px">
+							<p:outputLabel value="Observação" />
+							<p:inputTextarea rows="3" style="width: 500%"
+								value="#{cadastroConsultaMedicaBean.consultaMedica.observacao}" />
+						</h:panelGroup>
+					</h:panelGrid>
+
+					<p:commandButton value="Salvar"
+						action="#{cadastroConsultaMedicaBean.salvar}"
+						update="medicosTable inclusaoPanel"
+						oncomplete="tratarInclusaoProduto(args)" />
+				</h:panelGroup>
+
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -35,9 +35,9 @@ public class CadastroMedicoBean implements Serializable {
 	private Medico medico;
 
 	@Inject
-	private CadastroMedicoService cadastroMedicoService;	
+	private CadastroMedicoService cadastroMedicoService;
 
-	private List<EspecialidadeMedica> especialidadeMedicas;	
+	private List<EspecialidadeMedica> especialidadeMedicas;
 
 	@Inject
 	private EspecialidadeMedicaDAO especialidadeMedicaDAO;
@@ -50,7 +50,7 @@ public class CadastroMedicoBean implements Serializable {
 			limpar();
 
 		}
-		
+
 		this.especialidadeMedicas = this.especialidadeMedicaDAO.buscarTodos();
 
 	}
@@ -87,12 +87,12 @@ public class CadastroMedicoBean implements Serializable {
 	public List<EspecialidadeMedica> getEspecialidadeMedicas() {
 		return especialidadeMedicas;
 	}
-	
+
 	/* enuns */
-	
-	public TipoLogradouro[] getTipoLogradouros(){
+
+	public TipoLogradouro[] getTipoLogradouros() {
 		return TipoLogradouro.values();
-		
+
 	}
 
 	public TipoTelefone[] getTipoTelefones() {

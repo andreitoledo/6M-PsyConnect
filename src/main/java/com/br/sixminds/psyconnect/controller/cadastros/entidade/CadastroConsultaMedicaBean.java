@@ -35,7 +35,7 @@ public class CadastroConsultaMedicaBean implements Serializable {
 
 	@Inject
 	private CadastroConsultaMedicaService cadastroConsultaMedicaService;
-	
+
 	private ConsultaMedica consultaMedica;
 
 	/* por causa da busca por médicos */

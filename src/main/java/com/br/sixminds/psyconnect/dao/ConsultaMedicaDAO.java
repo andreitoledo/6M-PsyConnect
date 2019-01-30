@@ -42,7 +42,6 @@ public class ConsultaMedicaDAO implements Serializable {
 		manager.merge(consultaMedica);
 
 	}
-	
 
 	@Transactional
 	public void excluir(ConsultaMedica consultaMedica) throws NegocioException {
@@ -61,23 +60,15 @@ public class ConsultaMedicaDAO implements Serializable {
 
 	public List<ConsultaMedica> porDescricaoSemelhante(String descricao) {
 
-		return manager
-				.createQuery("from ConsultaMedica where descricao like :descricao",
-						ConsultaMedica.class)
-				.setParameter("descricao", "%" + descricao + "%")
-				.getResultList();
+		return manager.createQuery("from ConsultaMedica where descricao like :descricao", ConsultaMedica.class)
+				.setParameter("descricao", "%" + descricao + "%").getResultList();
 	}
-	
-	
+
 	public List<ConsultaMedica> porDescricao(String descricao) {
 		return this.manager
-				.createQuery(
-						"from ConsultaMedica where upper(descricao) like :descricao",
-						ConsultaMedica.class)
-				.setParameter("descricao", descricao.toUpperCase() + "%")
-				.getResultList();
+				.createQuery("from ConsultaMedica where upper(descricao) like :descricao", ConsultaMedica.class)
+				.setParameter("descricao", descricao.toUpperCase() + "%").getResultList();
 
 	}
-	
 
 }
