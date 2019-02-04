@@ -39,17 +39,12 @@
 
 				<!-- começa a definir tela com os atributos -->
 				<p:panelGrid columns="2" id="panel_cabecalho"
-					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+					style="width: 100%; margin-top: 20px" columnClasses="campo, rotulo">
 
 
-					<!-- inicio buscando pelo codigo -->
+					<!-- inicio buscando pelo codigo médico -->
 
-					<p:outputLabel value="Escolha um Especialista" for="medico" />
-					<p:inputText id="medico"
-						value="#{cadastroConsultaMedicaBean.nomeMedico}" size="60"
-						maxlength="80"
-						readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
-					
+					<p:outputLabel />
 					<p:commandButton icon="ui-icon-search" title="Pesquisa"
 						action="#{selecaoEntidadeBean.abrirDialogo}" process="@this"
 						update="@none">
@@ -60,20 +55,46 @@
 					</p:commandButton>
 
 
+					<p:inputText id="medico"
+						value="#{cadastroConsultaMedicaBean.nomeMedico}" size="20"
+						maxlength="80"
+						placeholder="Escolha um especialista na lupa ao lado"
+						readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
+
+
+					<!-- inicio buscando pelo codigo paciente -->
+
+
+					<p:outputLabel />
+					<p:commandButton icon="ui-icon-search" title="Pesquisa"
+						action="#{selecaoEntidadePacienteBean.abrirDialogo}"
+						process="@this" update="@none">
+						<p:ajax event="dialogReturn"
+							listener="#{cadastroConsultaMedicaBean.pacienteSelecionado}"
+							process="@this" update="paciente" />
+						<p:resetInput target="paciente" />
+					</p:commandButton>
+
+
+					<p:inputText id="paciente"
+						value="#{cadastroConsultaMedicaBean.nomePaciente}" size="20"
+						maxlength="80" placeholder="Escolha um paciente na lupa ao lado"
+						readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
+
 					<!-- fim buscando pelo codigo -->
 
+
 				</p:panelGrid>
-
-
 
 				<p:panelGrid columns="2" layout="grid" id="panel1"
 					style="width: 100%; margin-top: 0px"
 					columnClasses="ui-grid-col-8, ui-grid-col-8">
+					
 
-					<p:outputLabel value="Nome do paciente" for="nome" />
-					<p:inputText id="nome" size="60" maxlength="80" placeholder="nome"
+					<p:outputLabel value="E-mail" for="email1" />
+					<p:inputText id="email1" size="60" maxlength="80" placeholder="Seu e-mail"
 						required="true"
-						value="#{cadastroConsultaMedicaBean.consultaMedica.nome}" />
+						value="#{cadastroConsultaMedicaBean.consultaMedica.paciente.email1}" />
 
 					<p:outputLabel value="Data Agendamento" for="dataCriacao" />
 					<p:calendar id="dataCriacao" size="10"

@@ -21,8 +21,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 /**
  * @author andrei
  *
@@ -30,8 +28,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "ConsultaMedica.buscarTodos", query = " select cp from ConsultaMedica cp "
-		+ " left join fetch cp.medico ")
-})
+		+ " left join fetch cp.medico ") })
 public class ConsultaMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,9 +36,6 @@ public class ConsultaMedica implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
-	@NotBlank
-	private String nome;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -55,20 +49,16 @@ public class ConsultaMedica implements Serializable {
 	@JoinColumn(name = "codigo_medico")
 	private Medico medico;
 
+	@ManyToOne
+	@JoinColumn(name = "codigo_paciente")
+	private Paciente paciente;
+
 	public Long getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Date getDataCriacao() {
@@ -93,6 +83,14 @@ public class ConsultaMedica implements Serializable {
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	@Override

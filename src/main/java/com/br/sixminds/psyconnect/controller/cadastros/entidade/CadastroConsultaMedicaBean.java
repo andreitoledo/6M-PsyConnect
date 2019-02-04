@@ -16,8 +16,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.primefaces.event.SelectEvent;
 
 import com.br.sixminds.psyconnect.dao.MedicoDAO;
+import com.br.sixminds.psyconnect.dao.PacienteDAO;
 import com.br.sixminds.psyconnect.model.ConsultaMedica;
 import com.br.sixminds.psyconnect.model.Medico;
+import com.br.sixminds.psyconnect.model.Paciente;
 import com.br.sixminds.psyconnect.service.CadastroConsultaMedicaService;
 import com.br.sixminds.psyconnect.service.NegocioException;
 import com.br.sixminds.psyconnect.util.jsf.FacesMessages;
@@ -38,11 +40,17 @@ public class CadastroConsultaMedicaBean implements Serializable {
 
 	private ConsultaMedica consultaMedica;
 
-	/* por causa da busca por médicos */
+	/* por causa da busca por médicos no dialogo */
 	private List<Medico> medicos;
+
+	/* por causa da busca por pacientes no dialogo */
+	private List<Paciente> pacientes;
 
 	@Inject
 	private MedicoDAO medicoDAO;
+
+	@Inject
+	private PacienteDAO pacienteDAO;
 
 	@Inject
 	private FacesMessages facesMessages;
@@ -54,6 +62,7 @@ public class CadastroConsultaMedicaBean implements Serializable {
 		}
 
 		this.medicos = this.medicoDAO.buscarTodos();
+		this.pacientes = this.pacienteDAO.buscarTodos();
 	}
 
 	private void limpar() {
@@ -64,6 +73,11 @@ public class CadastroConsultaMedicaBean implements Serializable {
 	public void medicoSelecionado(SelectEvent event) {
 		Medico medico = (Medico) event.getObject();
 		consultaMedica.setMedico(medico);
+	}
+
+	public void pacienteSelecionado(SelectEvent event) {
+		Paciente paciente = (Paciente) event.getObject();
+		consultaMedica.setPaciente(paciente);
 	}
 
 	public void salvar() {
@@ -92,6 +106,10 @@ public class CadastroConsultaMedicaBean implements Serializable {
 		return medicos;
 	}
 
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
 	public boolean isEditando() {
 		return this.consultaMedica.getCodigo() != null;
 	}
@@ -102,6 +120,15 @@ public class CadastroConsultaMedicaBean implements Serializable {
 	}
 
 	public void setNomeMedico(String nome) {
+
+	}
+
+	@NotBlank
+	public String getNomePaciente() {
+		return consultaMedica.getPaciente() == null ? null : consultaMedica.getPaciente().getNome();
+	}
+
+	public void setNomePaciente(String nome) {
 
 	}
 

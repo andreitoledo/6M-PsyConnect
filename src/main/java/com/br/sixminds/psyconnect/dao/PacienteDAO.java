@@ -61,4 +61,16 @@ public class PacienteDAO implements Serializable {
 
 	}
 
+	public List<Paciente> porNomeSemelhante(String nome) {
+
+		return manager.createQuery("from Paciente where nome like :nome", Paciente.class)
+				.setParameter("nome", "%" + nome + "%").getResultList();
+	}
+
+	public List<Paciente> porCpfSemelhante(String inscricaoFederal) {
+
+		return manager.createQuery("from Paciente where inscricaoFederal like :inscricaoFederal", Paciente.class)
+				.setParameter("inscricaoFederal", "%" + inscricaoFederal + "%").getResultList();
+	}
+
 }

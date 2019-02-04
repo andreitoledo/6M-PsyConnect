@@ -13,7 +13,7 @@
 		</f:metadata>
 
 		<h2>
-			| Sistema PsyConnect | <SMALL>Manutenção Consultas Médicas</SMALL>
+			| Sistema PsyConnect | <SMALL>Pesquisa Consultas Médicas</SMALL>
 		</h2>
 
 		<h:form id="frmPesquisa">
@@ -41,8 +41,8 @@
 				</p:column>
 
 				<p:column headerText="Nome do Paciente" priority="1"
-					sortBy="#{consultaMedica.nome}" filterBy="#{consultaMedica.nome}">
-					<h:outputText value="#{consultaMedica.nome}" />
+					sortBy="#{consultaMedica.paciente.nome}" filterBy="#{consultaMedica.paciente.nome}">
+					<h:outputText value="#{consultaMedica.paciente.nome}" />
 				</p:column>
 
 				<p:column headerText="Nome do Especialista" priority="2"

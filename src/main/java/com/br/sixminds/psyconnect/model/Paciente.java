@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -77,6 +78,7 @@ public class Paciente extends Entidade {
 	@Column(name = "numero_tel1")
 	private String numeroTel1;
 	private String contato1;
+	@Email
 	private String email1;
 
 	@Enumerated(EnumType.STRING)
