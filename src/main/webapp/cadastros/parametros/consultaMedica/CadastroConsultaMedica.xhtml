@@ -39,7 +39,7 @@
 
 				<!-- começa a definir tela com os atributos -->
 				<p:panelGrid columns="2" id="panel_cabecalho"
-					style="width: 100%; margin-top: 20px" columnClasses="campo, rotulo">
+					style="width: 50%; margin-top: 20px" columnClasses="campo, rotulo">
 
 
 					<!-- inicio buscando pelo codigo médico -->
@@ -86,20 +86,27 @@
 
 				</p:panelGrid>
 
-				<p:panelGrid columns="2" layout="grid" id="panel1"
-					style="width: 100%; margin-top: 0px"
-					columnClasses="ui-grid-col-8, ui-grid-col-8">
-					
+				<p:panelGrid columns="1" layout="grid" id="panel_corpo"
+					style="width: 20%; margin-top: 0px" columnClasses="rotulo, campo"
+					styleClass="ui-panelgrid-blank panelgrid-noborder">
+					<!-- columnClasses="ui-grid-col-4, ui-grid-col-8"> -->
 
-					<p:outputLabel value="E-mail" for="email1" />
+
+					<!-- <p:outputLabel value="E-mail" for="email1" />
 					<p:inputText id="email1" size="60" maxlength="80" placeholder="Seu e-mail"
-						required="true"
+						required="true" 
 						value="#{cadastroConsultaMedicaBean.consultaMedica.paciente.email1}" />
+ -->
 
 					<p:outputLabel value="Data Agendamento" for="dataCriacao" />
 					<p:calendar id="dataCriacao" size="10"
 						value="#{cadastroConsultaMedicaBean.consultaMedica.dataCriacao}"
 						pattern="dd/MM/yyyy HH:mm" />
+				</p:panelGrid>
+
+				<p:panelGrid columns="1" layout="grid" id="panel_obs"
+					style="width: 52%; margin-top: 0px" columnClasses="rotulo, campo"
+					styleClass="ui-panelgrid-blank panelgrid-noborder">
 
 					<h:panelGroup layout="block" style="padding-right: 20px">
 						<p:outputLabel value="Observação" />
