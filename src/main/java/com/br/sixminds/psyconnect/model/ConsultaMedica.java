@@ -21,6 +21,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * @author andrei
  *
@@ -39,6 +41,7 @@ public class ConsultaMedica implements Serializable {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
+
 	@Column(name = "data_criacao", nullable = false)
 	private Date dataCriacao;
 

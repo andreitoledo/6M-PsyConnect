@@ -58,7 +58,7 @@
 					<p:inputText id="medico"
 						value="#{cadastroConsultaMedicaBean.nomeMedico}" size="20"
 						maxlength="80"
-						placeholder="Escolha um especialista na lupa ao lado"
+						placeholder="Busque um especialista na lupa ao lado"
 						readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
 
 
@@ -78,7 +78,7 @@
 
 					<p:inputText id="paciente"
 						value="#{cadastroConsultaMedicaBean.nomePaciente}" size="20"
-						maxlength="80" placeholder="Escolha um paciente na lupa ao lado"
+						maxlength="80" placeholder="Busque seu nome na lupa ao lado"
 						readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}" />
 
 					<!-- fim buscando pelo codigo -->
@@ -89,14 +89,6 @@
 				<p:panelGrid columns="1" layout="grid" id="panel_corpo"
 					style="width: 20%; margin-top: 0px" columnClasses="rotulo, campo"
 					styleClass="ui-panelgrid-blank panelgrid-noborder">
-					<!-- columnClasses="ui-grid-col-4, ui-grid-col-8"> -->
-
-
-					<!-- <p:outputLabel value="E-mail" for="email1" />
-					<p:inputText id="email1" size="60" maxlength="80" placeholder="Seu e-mail"
-						required="true" 
-						value="#{cadastroConsultaMedicaBean.consultaMedica.paciente.email1}" />
- -->
 
 					<p:outputLabel value="Data Agendamento" for="dataCriacao" />
 					<p:calendar id="dataCriacao" size="10"
